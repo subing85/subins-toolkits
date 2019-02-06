@@ -49,5 +49,5 @@ How to run?
 
     > Run the following code in the Python script editor.
 
-import smartDeformer
-smartDeformer.show_window()
+  import smartDeformer
+  smartDeformer.show_window()
