@@ -50,6 +50,5 @@ How to run?
     > Run the following code in the Python script editor.
     
 
-import smartDeformer_maya2017
-
-smartDeformer_maya2017.show_window()
+  import smartDeformer_maya2017
+  smartDeformer_maya2017.show_window()
