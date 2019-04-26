@@ -48,6 +48,7 @@ How to run?
     > Start Maya
 
     > Run the following code in the Python script editor.
+    
 
 import smartDeformer_maya2017
 
