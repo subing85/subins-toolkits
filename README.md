@@ -31,3 +31,10 @@ https://www.subins-toolkits.com/
 	A free tool for store the Assets in Autodesk Maya.
 
 	https://www.subins-toolkits.com/asset-library
+	
+	
+4. Maya plug-in for Export and Import UV Sets
+
+	A free Maya Plug-in for the uv export and import in Autodesk Maya.
+	
+	https://www.subins-toolkits.com/studio-uv
