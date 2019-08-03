@@ -27,18 +27,16 @@ Description
 
     This is easy way to interchanging uv's between Maya instances.  
     
+    
 
 
-How to Configure the Studio UV Plug-in?.
-​
+How to Configure the Studio UV Plug-in?.​
 
     1. configure the env variable called PYTHONPATH and MAYA_PLUG_IN_PATH.
     
         For example, if it is the below folder structure.
             /home/user/subins_toolkits
-
-​
-
+            
                     └── studio_uv
                         ├── core
                         │   ├── 
@@ -84,10 +82,8 @@ How to use the studioUV plug-in?.
 
     plugin name : studioUV
 
-
         mel command
-            studioUV        
-
+            studioUV
 
         python command
             maya.cmds.studioUV
@@ -98,14 +94,12 @@ How to use the studioUV plug-in?.
 
 Help on function studioUV in module pymel.internal.pmcmds:
 
-studioUV(*args, **kwargs)
 
+studioUV(*args, **kwargs)
 
     Flags:
         - directory : dir                (unicode or str)       create, edit and query
-               Set the type of the export output or import inputs directory.
-
-​
+               Set the type of the export output or import inputs directory.​
 
         - objects : obj                  (unicode or str)       create and edit
               Set the type of the export or import inputs polygon as s sting format.
@@ -117,9 +111,7 @@ studioUV(*args, **kwargs)
         - select : s                     (unicode or str)       create and edit
               Set the type of the export or import inputs polygon.
               export "selected" or "all" 
-              import "selected" or "all" or "matching" 
-
-​
+              import "selected" or "all" or "matching" ​
 
         - type : typ                     (unicode or str)       create and edit
               create and edit              
@@ -140,8 +132,6 @@ Examples
     # Export Selected 
         export selected polygons from the scene)
     maya.cmds.studioUV(typ='export', s='selected', dir='/tmp/my_uv_test.muv')
-
-
     
     # Import All 
         import to all available polygons only matchs with exported data
