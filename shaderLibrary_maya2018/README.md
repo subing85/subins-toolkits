@@ -38,3 +38,9 @@ import shaderLibrary_maya2018
 shaderLibrary_maya2018.show_window()
 
 
+
+latest updates
+
+    > Bug fix for "Assign the specified shading group to renderable objects."
+
+
