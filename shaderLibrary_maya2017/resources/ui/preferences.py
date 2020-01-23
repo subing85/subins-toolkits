@@ -1,7 +1,7 @@
 '''
 preferences.py 0.0.1 
 Date: January 15, 2019
-Last modified: February 10, 2019
+Last modified: June 13, 2019
 Author: Subin. Gopi(subing85@gmail.com)
 
 # Copyright(c) 2019, Subin Gopi
@@ -15,17 +15,18 @@ Description
 
 import sys
 
-from PySide import QtCore
-from PySide import QtGui
+from PySide2 import QtCore
+from PySide2 import QtGui
+from PySide2 import QtWidgets
 from functools import partial
 from datetime import datetime
 
-from shaderLibrary import resources
-from shaderLibrary.modules import readWrite
-from shaderLibrary.utils import platforms
+from shaderLibrary_maya2017 import resources
+from shaderLibrary_maya2017.modules import readWrite
+from shaderLibrary_maya2017.utils import platforms
 
 
-class Preference(QtGui.QWidget):
+class Preference(QtWidgets.QWidget):
 
     def __init__(self, parent=None):
         super(Preference, self).__init__(parent)
@@ -41,19 +42,19 @@ class Preference(QtGui.QWidget):
         self.setWindowTitle(
             'Preferences ({} {})'.format(self.lable, self.version))
         self.resize(700, 100)
-        self.verticallayout = QtGui.QVBoxLayout(self)
+        self.verticallayout = QtWidgets.QVBoxLayout(self)
         self.verticallayout.setObjectName('verticallayout')
         self.verticallayout.setSpacing(10)
         self.verticallayout.setContentsMargins(10, 10, 10, 10)
-        self.groupbox = QtGui.QGroupBox(self)
+        self.groupbox = QtWidgets.QGroupBox(self)
         self.groupbox.setObjectName('groupbox_shader')
         self.groupbox.setTitle('Library Directories')
         self.verticallayout.addWidget(self.groupbox)
-        self.verticallayout_item = QtGui.QVBoxLayout(self.groupbox)
+        self.verticallayout_item = QtWidgets.QVBoxLayout(self.groupbox)
         self.verticallayout_item.setObjectName('verticallayout')
         self.verticallayout_item.setSpacing(10)
         self.verticallayout_item.setContentsMargins(10, 10, 10, 10)
-        self.button_add = QtGui.QPushButton(self.groupbox)
+        self.button_add = QtWidgets.QPushButton(self.groupbox)
         self.button_add.setObjectName('button_add')
         self.button_add.setText(u'\u002B')
         self.button_add.setStyleSheet('color: #0000FF;')
@@ -61,27 +62,27 @@ class Preference(QtGui.QWidget):
         self.button_add.setMaximumSize(QtCore.QSize(25, 25))
         self.button_add.hide()
         self.verticallayout_item.addWidget(self.button_add)
-        self.gridlayout = QtGui.QGridLayout(None)
+        self.gridlayout = QtWidgets.QGridLayout(None)
         self.gridlayout.setObjectName('gridlayout')
         self.gridlayout.setSpacing(5)
         self.gridlayout.setContentsMargins(10, 0, 0, 0)
         self.verticallayout_item.addLayout(self.gridlayout)
-        spacer_item = QtGui.QSpacerItem(
-            20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
+        spacer_item = QtWidgets.QSpacerItem(
+            20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticallayout.addItem(spacer_item)
-        self.horizontallayout = QtGui.QHBoxLayout()
+        self.horizontallayout = QtWidgets.QHBoxLayout()
         self.horizontallayout.setObjectName('horizontallayout')
         self.horizontallayout.setSpacing(10)
         self.horizontallayout.setContentsMargins(10, 10, 10, 10)
         self.verticallayout.addLayout(self.horizontallayout)
-        spacer_item = QtGui.QSpacerItem(
-            40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        spacer_item = QtWidgets.QSpacerItem(
+            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontallayout.addItem(spacer_item)
-        self.button_cancel = QtGui.QPushButton(self)
+        self.button_cancel = QtWidgets.QPushButton(self)
         self.button_cancel.setObjectName('button_cancel')
         self.button_cancel.setText('Cancel')
         self.horizontallayout.addWidget(self.button_cancel)
-        self.button_apply = QtGui.QPushButton(self)
+        self.button_apply = QtWidgets.QPushButton(self)
         self.button_apply.setObjectName('button_apply')
         self.button_apply.setText('Apply')
         self.horizontallayout.addWidget(self.button_apply)
@@ -98,8 +99,18 @@ class Preference(QtGui.QWidget):
         data = {}
         tag = 'shader_library'
         resource_path = resources.getResourceTypes()[type].encode()
-        rw = readWrite.ReadWrite(c=comment, cd=created_date, d=description,
-                                 t=type, v=valid, data=data, tag=tag, path=resource_path, name='library_preferences', format='json')
+        rw = readWrite.ReadWrite(
+            c=comment,
+            cd=created_date,
+            d=description,
+            t=type,
+            v=valid,
+            data=data,
+            tag=tag,
+            path=resource_path,
+            name='library_preferences',
+            format='json'
+        )
         self.bundles = rw.get_data()
         if not self.bundles:
             rw.create()
@@ -119,7 +130,7 @@ class Preference(QtGui.QWidget):
             self.add_widgets(index, create_bundles[keys[index]])
 
     def add_widgets(self, row, text=None):
-        button_remove = QtGui.QPushButton(self.groupbox)
+        button_remove = QtWidgets.QPushButton(self.groupbox)
         button_remove.setObjectName('button_remove_%s' % row)
         button_remove.setText(u'\u274C')
         button_remove.setStyleSheet('color: #FF0000;')
@@ -127,11 +138,11 @@ class Preference(QtGui.QWidget):
         button_remove.setMaximumSize(QtCore.QSize(25, 25))
         button_remove.hide()
         self.gridlayout.addWidget(button_remove, row, 0, 1, 1)
-        lineedit = QtGui.QLineEdit(self.groupbox)
+        lineedit = QtWidgets.QLineEdit(self.groupbox)
         lineedit.setObjectName('lineedit_path_%s' % row)
         lineedit.setText(text)
         self.gridlayout.addWidget(lineedit, row, 1, 1, 1)
-        button_find = QtGui.QPushButton(self.groupbox)
+        button_find = QtWidgets.QPushButton(self.groupbox)
         button_find.setObjectName('button_find_%s' % row)
         button_find.setText('...')
         button_find.setStyleSheet('color: #0000FF;')
@@ -147,7 +158,7 @@ class Preference(QtGui.QWidget):
             each_widget.deleteLater()
 
     def find_path(self, widgets):
-        path = QtGui.QFileDialog.getExistingDirectory(
+        path = QtWidgets.QFileDialog.getExistingDirectory(
             self, 'Browser', self.brows_directory)
         if not path:
             return
@@ -166,8 +177,17 @@ class Preference(QtGui.QWidget):
         tag = 'shader_library'
         resource_path = resources.getResourceTypes()[type]
 
-        rw = readWrite.ReadWrite(c=comment, cd=created_date, d=description,
-                                 t=type, v=valid, data=data, tag=tag, path=resource_path, name='library_preferences', format='json')
+        rw = readWrite.ReadWrite(
+            c=comment,
+            cd=created_date,
+            d=description,
+            t=type,
+            v=valid,
+            data=data,
+            tag=tag,
+            path=resource_path,
+            name='library_preferences',
+            format='json')
         rw.create()
         print '\n#result preferences updated ', rw.file_path
         self.close()
@@ -188,7 +208,7 @@ class Preference(QtGui.QWidget):
 
 
 if __name__ == '__main__':
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     window = Preference(parent=None)
     window.show()
     sys.exit(app.exec_())

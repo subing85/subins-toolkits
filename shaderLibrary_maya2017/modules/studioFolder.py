@@ -1,7 +1,7 @@
 '''
 studioFolders.py 0.0.1 
 Date: January 16, 2019
-Last modified: February 10, 2019
+Last modified: June 13, 2019
 Author: Subin. Gopi(subing85@gmail.com)
 
 # Copyright(c) 2018, Subin Gopi
@@ -17,9 +17,10 @@ import os
 import shutil
 import warnings
 
-from PySide import QtGui
+from PySide2 import QtWidgets
+from PySide2 import QtGui
 
-from shaderLibrary import resources
+from shaderLibrary_maya2017 import resources
 
 
 class Folder(object):
@@ -47,7 +48,7 @@ class Folder(object):
             item = parent
             current_path = os.path.join(root, each_path)
             if each_path:
-                item = QtGui.QTreeWidgetItem(parent)
+                item = QtWidgets.QTreeWidgetItem(parent)
                 item.setText(0, each_path)
                 item.setToolTip(0, current_path)
                 icon = QtGui.QIcon()

@@ -1,7 +1,7 @@
 '''
 catalogue.py 0.0.1 
 Date: January 15, 2019
-Last modified: February 10, 2019
+Last modified: June 13, 2019
 Author: Subin. Gopi(subing85@gmail.com)
 
 # Copyright(c) 2019, Subin Gopi
@@ -17,11 +17,12 @@ Description
 import sys
 import warnings
 
-from PySide import QtCore
-from PySide import QtGui
+from PySide2 import QtCore
+from PySide2 import QtGui
+from PySide2 import QtWidgets
 
 
-class Catalogue(QtGui.QWidget):
+class Catalogue(QtWidgets.QWidget):
 
     def __init__(self, parent=None):
         super(Catalogue, self).__init__(parent=None)
@@ -33,32 +34,32 @@ class Catalogue(QtGui.QWidget):
     def setup_ui(self):
         self.setObjectName('catalogue')
         self.resize(500, 800)
-        self.verticallayout = QtGui.QVBoxLayout(self)
+        self.verticallayout = QtWidgets.QVBoxLayout(self)
         self.verticallayout.setObjectName('verticallayout')
         self.verticallayout.setSpacing(10)
         self.verticallayout.setContentsMargins(10, 10, 10, 10)
-        self.splitter = QtGui.QSplitter(self)
+        self.splitter = QtWidgets.QSplitter(self)
         self.splitter.setOrientation(QtCore.Qt.Horizontal)
         self.splitter.setObjectName('splitter')
         self.verticallayout.addWidget(self.splitter)
-        self.treewidget_folder = QtGui.QTreeWidget(self.splitter)
+        self.treewidget_folder = QtWidgets.QTreeWidget(self.splitter)
         self.treewidget_folder.setObjectName('treewidget_folder')
         self.treewidget_folder.setAlternatingRowColors(True)
         self.treewidget_folder.setSelectionMode(
-            QtGui.QAbstractItemView.ExtendedSelection)
+            QtWidgets.QAbstractItemView.ExtendedSelection)
         self.treewidget_folder.setHeaderHidden(True)
         self.treewidget_folder.headerItem().setText(0, 'Folders')
         self.splitter.addWidget(self.treewidget_folder)
-        self.listWidget_catalogue = QtGui.QListWidget(self.splitter)
+        self.listWidget_catalogue = QtWidgets.QListWidget(self.splitter)
         self.listWidget_catalogue.setAlternatingRowColors(True)
         self.listWidget_catalogue.setObjectName('listWidget_catalogue')
         self.listWidget_catalogue.setSortingEnabled(False)
-        self.listWidget_catalogue.setFlow(QtGui.QListView.LeftToRight)
+        self.listWidget_catalogue.setFlow(QtWidgets.QListView.LeftToRight)
         self.listWidget_catalogue.setProperty("isWrapping", True)
-        self.listWidget_catalogue.setResizeMode(QtGui.QListView.Adjust)
+        self.listWidget_catalogue.setResizeMode(QtWidgets.QListView.Adjust)
         self.listWidget_catalogue.setSpacing(4)
         self.listWidget_catalogue.setUniformItemSizes(False)
-        self.listWidget_catalogue.setViewMode(QtGui.QListView.IconMode)
+        self.listWidget_catalogue.setViewMode(QtWidgets.QListView.IconMode)
         self.listWidget_catalogue.setSelectionRectVisible(True)
         self.listWidget_catalogue.setIconSize(
             QtCore.QSize(self.currnet_size[0], self.currnet_size[1]))
@@ -69,7 +70,6 @@ class Catalogue(QtGui.QWidget):
         self._ctrl_press = False
 
     def wheel_event(self, event):
-        print 'fffffffffffff'
         if not self.mouse_scroll:
             return
         icon_size = self.listWidget_catalogue.iconSize()
@@ -101,7 +101,7 @@ class Catalogue(QtGui.QWidget):
 
 
 if __name__ == '__main__':
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     window = Catalogue(parent=None)
     window.show()
     sys.exit(app.exec_())

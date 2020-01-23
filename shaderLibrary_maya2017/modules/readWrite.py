@@ -1,7 +1,7 @@
 '''
 readWrite.py 0.0.1 
 Date: January 01, 2019
-Last modified: February 10, 2019
+Last modified: June 13, 2019
 Author: Subin. Gopi(subing85@gmail.com)
 
 # Copyright(c) 2018, Subin Gopi

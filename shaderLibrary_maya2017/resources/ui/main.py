@@ -18,26 +18,26 @@ import sys
 import webbrowser
 import thread
 
-from PySide import QtCore
-from PySide import QtGui
+from PySide2 import QtCore
+from PySide2 import QtGui
+from PySide2 import QtWidgets
 from functools import partial
 
 from maya import OpenMaya
 from maya import cmds
 
-from shaderLibrary.modules import readWrite
-from shaderLibrary.modules import studioFolder
-from shaderLibrary.modules import studioMaya
-from shaderLibrary.modules import studioShader
+from shaderLibrary_maya2017.modules import readWrite
+from shaderLibrary_maya2017.modules import studioFolder
+from shaderLibrary_maya2017.modules import studioMaya
+from shaderLibrary_maya2017.modules import studioShader
+from shaderLibrary_maya2017.resources.ui import preferences
+from shaderLibrary_maya2017.resources.ui import catalogue
+from shaderLibrary_maya2017.resources.ui import model
+from shaderLibrary_maya2017.utils import platforms
+from shaderLibrary_maya2017 import resources
 
-from shaderLibrary.resources.ui import preferences
-from shaderLibrary.resources.ui import catalogue
-from shaderLibrary.resources.ui import model
-from shaderLibrary.utils import platforms
-from shaderLibrary import resources
 
-
-class MainWindow(QtGui.QMainWindow):
+class MainWindow(QtWidgets.QMainWindow):
 
     def __init__(self, parent=platforms.get_qwidget()):
         super(MainWindow, self).__init__(parent)
@@ -77,10 +77,10 @@ class MainWindow(QtGui.QMainWindow):
         self.setStyleSheet('font: 12pt \"MS Shell Dlg 2\";')
         self.setObjectName('mainwindow_%s' % self.tool_kit_object)
         self.setWindowTitle(self.tool_kit_titile)
-        self.centralwidget = QtGui.QWidget(self)
+        self.centralwidget = QtWidgets.QWidget(self)
         self.centralwidget.setObjectName('centralwidget')
         self.setCentralWidget(self.centralwidget)
-        self.verticalLayout = QtGui.QVBoxLayout(self.centralwidget)
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
         self.verticalLayout.setObjectName('verticalLayout')
         self.verticalLayout.addWidget(self.catalogue.splitter)
         self.catalogue.splitter.addWidget(self.model.groupbox_model)
@@ -106,47 +106,47 @@ class MainWindow(QtGui.QMainWindow):
         self.button_publish = self.model.button_publish
         self.lineEdit_label.returnPressed.connect(
             partial(self.rename_model, self.lineEdit_label))
-        self.menu_bar = QtGui.QMenuBar(self)
+        self.menu_bar = QtWidgets.QMenuBar(self)
         self.menu_bar.setGeometry(QtCore.QRect(0, 0, 960, 25))
         self.menu_bar.setObjectName('menu_bar')
         self.setMenuBar(self.menu_bar)
-        self.menu_file = QtGui.QMenu(self.menu_bar)
+        self.menu_file = QtWidgets.QMenu(self.menu_bar)
         self.menu_file.setObjectName('menu_file')
         self.menu_file.setTitle('File')
-        self.menu_settings = QtGui.QMenu(self.menu_bar)
+        self.menu_settings = QtWidgets.QMenu(self.menu_bar)
         self.menu_settings.setObjectName('menu_settings')
         self.menu_settings.setTitle('Settings')
-        self.menu_help = QtGui.QMenu(self.menu_bar)
+        self.menu_help = QtWidgets.QMenu(self.menu_bar)
         self.menu_help.setObjectName('menu_help')
         self.menu_help.setTitle('Help')
-        self.action_create = QtGui.QAction(self)
+        self.action_create = QtWidgets.QAction(self)
         self.action_create.setObjectName('action_create')
         self.action_create.setText('Create Folder')
-        self.action_remove = QtGui.QAction(self)
+        self.action_remove = QtWidgets.QAction(self)
         self.action_remove.setObjectName('action_remove')
         self.action_remove.setText('Remove Folder')
-        self.action_rename = QtGui.QAction(self)
+        self.action_rename = QtWidgets.QAction(self)
         self.action_rename.setObjectName('action_rename')
         self.action_rename.setText('Rename Folder')
-        self.action_refresh = QtGui.QAction(self)
+        self.action_refresh = QtWidgets.QAction(self)
         self.action_refresh.setObjectName('action_refresh')
         self.action_refresh.setText('Refresh')
-        self.action_expand = QtGui.QAction(self)
+        self.action_expand = QtWidgets.QAction(self)
         self.action_expand.setObjectName('action_expand')
         self.action_expand.setText('Expand')
-        self.action_collapse = QtGui.QAction(self)
+        self.action_collapse = QtWidgets.QAction(self)
         self.action_collapse.setObjectName('action_collapse')
         self.action_collapse.setText('Collapse')
-        self.action_quit = QtGui.QAction(self)
+        self.action_quit = QtWidgets.QAction(self)
         self.action_quit.setObjectName('action_quit')
         self.action_quit.setText('Quit')
-        self.action_preferences = QtGui.QAction(self)
+        self.action_preferences = QtWidgets.QAction(self)
         self.action_preferences.setObjectName('action_preferences')
         self.action_preferences.setText('Preferences')
-        self.action_aboutool = QtGui.QAction(self)
+        self.action_aboutool = QtWidgets.QAction(self)
         self.action_aboutool.setObjectName('action_aboutool')
         self.action_aboutool.setText('About Tool')
-        self.action_abouttoolkits = QtGui.QAction(self)
+        self.action_abouttoolkits = QtWidgets.QAction(self)
         self.action_abouttoolkits.setObjectName('action_abouttoolkits')
         self.action_abouttoolkits.setText('About Tool Kits')
         self.menu_bar.addAction(self.menu_file.menuAction())
@@ -162,7 +162,7 @@ class MainWindow(QtGui.QMainWindow):
         self.menu_settings.addAction(self.action_preferences)
         self.menu_help.addAction(self.action_aboutool)
         self.menu_help.addAction(self.action_abouttoolkits)
-        self.contex_menu = QtGui.QMenu(self)
+        self.contex_menu = QtWidgets.QMenu(self)
         self.contex_menu.addAction(self.action_create)
         self.contex_menu.addAction(self.action_rename)
         self.contex_menu.addAction(self.action_remove)
@@ -190,7 +190,7 @@ class MainWindow(QtGui.QMainWindow):
         self.action_abouttoolkits.triggered.connect(self.toolkit_link)
 
     def set_icons(self):
-        actions = self.findChildren(QtGui.QAction)
+        actions = self.findChildren(QtWidgets.QAction)
         for each_action in actions:
             objectName = each_action.objectName()
             if not objectName:
@@ -261,14 +261,14 @@ class MainWindow(QtGui.QMainWindow):
             treewidget.collapseItem(each_dependency)
 
     def create(self):
-        folder_name, ok = QtGui.QInputDialog.getText(
-            self, 'Input', 'Enter the folder name:', QtGui.QLineEdit.Normal)
+        folder_name, ok = QtWidgets.QInputDialog.getText(
+            self, 'Input', 'Enter the folder name:', QtWidgets.QLineEdit.Normal)
         if not ok:
             OpenMaya.MGlobal.displayWarning('abort the folder creation!...')
             return
         if not self.library_paths:
-            QtGui.QMessageBox.warning(
-                self, 'Warning', 'Not found Publish directory', QtGui.QMessageBox.Ok)
+            QtWidgets.QMessageBox.warning(
+                self, 'Warning', 'Not found Publish directory', QtWidgets.QMessageBox.Ok)
             return
         current_path = os.path.join(self.library_paths[0], folder_name)
         if self.treewidget.selectedItems():
@@ -276,16 +276,16 @@ class MainWindow(QtGui.QMainWindow):
             tool_tip = str(current_item.toolTip(0))
             current_path = os.path.join(tool_tip, folder_name)
         if os.path.isdir(current_path):
-            QtGui.QMessageBox.warning(
+            QtWidgets.QMessageBox.warning(
                 self,
                 'Warning',
                 'Already found the folder.\n%s' % current_path,
-                QtGui.QMessageBox.Ok)
+                QtWidgets.QMessageBox.Ok)
             return
         result, message = self.folder.create(folder_path=current_path)
         if not result:
-            QtGui.QMessageBox.warning(
-                self, 'Warning', message, QtGui.QMessageBox.Ok)
+            QtWidgets.QMessageBox.warning(
+                self, 'Warning', message, QtWidgets.QMessageBox.Ok)
             OpenMaya.MGlobal.displayWarning('Create folder  - faild!...')
             return
         self.load_library_folders(self.treewidget)
@@ -293,25 +293,25 @@ class MainWindow(QtGui.QMainWindow):
             '\"%s\" Folder create - success!...' % message)
 
     def rename(self):
-        folder_name, ok = QtGui.QInputDialog.getText(
-            self, 'Input', 'Enter the new name:', QtGui.QLineEdit.Normal)
+        folder_name, ok = QtWidgets.QInputDialog.getText(
+            self, 'Input', 'Enter the new name:', QtWidgets.QLineEdit.Normal)
         if not ok:
             print '\n#warnings abort the rename'
             return
         if not self.treewidget.selectedItems():
-            QtGui.QMessageBox.warning(
+            QtWidgets.QMessageBox.warning(
                 self,
                 'Warning',
                 'Not found any selection\nSelect the folder and try',
-                QtGui.QMessageBox.Ok)
+                QtWidgets.QMessageBox.Ok)
             return
         current_item = self.treewidget.selectedItems()[-1]
         current_path = str(current_item.toolTip(0))
         result, message = self.folder.rename(
             folder_path=current_path, name=folder_name)
         if not result:
-            QtGui.QMessageBox.warning(
-                self, 'Warning', message, QtGui.QMessageBox.Ok)
+            QtWidgets.QMessageBox.warning(
+                self, 'Warning', message, QtWidgets.QMessageBox.Ok)
             OpenMaya.MGlobal.displayWarning('Rename folder - faild!...')
             return
         self.load_library_folders(self.treewidget)
@@ -320,29 +320,29 @@ class MainWindow(QtGui.QMainWindow):
 
     def remove(self):
         if not self.treewidget.selectedItems():
-            QtGui.QMessageBox.warning(
+            QtWidgets.QMessageBox.warning(
                 self,
                 'Warning',
                 'Not found any selection\nSelect the folder and try',
-                QtGui.QMessageBox.Ok)
+                QtWidgets.QMessageBox.Ok)
             return
-        replay = QtGui.QMessageBox.question(
+        replay = QtWidgets.QMessageBox.question(
             self,
             'Question',
             'Are you sure, you want to remove folder',
-            QtGui.QMessageBox.Yes,
-            QtGui.QMessageBox.No)
-        if replay == QtGui.QMessageBox.No:
+            QtWidgets.QMessageBox.Yes,
+            QtWidgets.QMessageBox.No)
+        if replay == QtWidgets.QMessageBox.No:
             OpenMaya.MGlobal.displayWarning('abort the remove folder!...')
             return
         for each_item in self.treewidget.selectedItems():
             current_path = str(each_item.toolTip(0))
             result, message = self.folder.remove(folder_path=current_path)
             if not result:
-                QtGui.QMessageBox.warning(
+                QtWidgets.QMessageBox.warning(
                     self,
                     'Warning', '%s\n%s' % (current_path, message),
-                    QtGui.QMessageBox.Ok)
+                    QtWidgets.QMessageBox.Ok)
                 OpenMaya.MGlobal.displayWarning('Remove folder - faild!...')
         self.load_library_folders(self.treewidget)
         self.listwidget.clear()
@@ -389,7 +389,7 @@ class MainWindow(QtGui.QMainWindow):
 
         listwidget.clear()
         for each_file in publish_files:
-            item = QtGui.QListWidgetItem()
+            item = QtWidgets.QListWidgetItem()
             listwidget.addItem(item)
             label = os.path.basename(os.path.splitext(each_file)[0])
             item.setText(label)
@@ -401,7 +401,7 @@ class MainWindow(QtGui.QMainWindow):
                 QtGui.QPixmap(icon_path),
                 QtGui.QIcon.Normal, QtGui.QIcon.Off)
             item.setIcon(icon)
-            item.setTextAlignment(QtCore.Qt.AlignHCenter | 
+            item.setTextAlignment(QtCore.Qt.AlignHCenter |
                                   QtCore.Qt.AlignBottom)
             thread.start_new_thread(
                 self.validte_model_publish, (each_file, item,))
@@ -412,7 +412,7 @@ class MainWindow(QtGui.QMainWindow):
         if valid:
             return
         item.setFlags(
-            QtCore.Qt.ItemIsSelectable | 
+            QtCore.Qt.ItemIsSelectable |
             QtCore.Qt.ItemIsDragEnabled | QtCore.Qt.ItemIsUserCheckable)
 
     def collect_child_items(self, parent):
@@ -424,56 +424,56 @@ class MainWindow(QtGui.QMainWindow):
     def publish(self):
         current_items = self.treewidget.selectedItems()
         if not current_items:
-            QtGui.QMessageBox.warning(
+            QtWidgets.QMessageBox.warning(
                 self,
                 'Warning',
                 'Not found any folder selection.\nSelect the folder and try!...',
-                QtGui.QMessageBox.Ok)
+                QtWidgets.QMessageBox.Ok)
             OpenMaya.MGlobal.displayWarning('Not found any folder selection.')
             return
         current_path = str(current_items[-1].toolTip(0))
         if not os.path.isdir(current_path):
-            QtGui.QMessageBox.warning(
+            QtWidgets.QMessageBox.warning(
                 self,
                 'Warning',
                 'Not found such Publish directory!...%s' % current_path,
-                QtGui.QMessageBox.Ok)
+                QtWidgets.QMessageBox.Ok)
             OpenMaya.MGlobal.displayWarning(
                 'Not found such Publish directory!...%s' % current_path)
             return
         geometry_dag_paths = self.studio_maya.getSelectedObjectShapeNode(
             OpenMaya.MFn.kMesh)
         if not geometry_dag_paths.length():
-            QtGui.QMessageBox.warning(
-                self,
+            QtWidgets.QMessageBox.warning(
+                self, 
                 'Warning',
                 'Not found any Polygon Geometry in your selection!...',
-                QtGui.QMessageBox.Ok)
+                QtWidgets.QMessageBox.Ok)
             OpenMaya.MGlobal.displayWarning(
                 'Not found any Polygon Geometry in your selection!...')
             return
         label = self.model.lineEdit_label.text()
         if not label:
-            QtGui.QMessageBox.warning(
+            QtWidgets.QMessageBox.warning(
                 self,
                 'Warning',
                 'Not found the Name of the the Publish!...',
-                QtGui.QMessageBox.Ok)
+                QtWidgets.QMessageBox.Ok)
             OpenMaya.MGlobal.displayWarning(
                 'Not found the Name of the the Publish!...')
-            return  # add condition for mutlipe object
+            return        # add condition for mutlipe object
         studio_shader = studioShader.Shader(
             geometry_dag_path=geometry_dag_paths[0])
         if studio_shader.had_file(current_path, label):
-            replay = QtGui.QMessageBox.warning(
+            replay = QtWidgets.QMessageBox.warning(
                 self,
                 'Warning',
                 'Already a file with the same name in the publish\n\"%s\"\nIf you want to overwrite press Yes' % label,
-                QtGui.QMessageBox.Yes,
-                QtGui.QMessageBox.No)
+                QtWidgets.QMessageBox.Yes,
+                QtWidgets.QMessageBox.No)
             OpenMaya.MGlobal.displayWarning(
                 'Already a file with the same name in the publish')
-            if replay != QtGui.QMessageBox.Yes:
+            if replay != QtWidgets.QMessageBox.Yes:
                 return
         user_comment = self.model.textedit_history.toPlainText()
         result = studio_shader.save(
@@ -484,12 +484,12 @@ class MainWindow(QtGui.QMainWindow):
         if False in result:
             message = 'Publish Failed!...\n%s\n%s' % (
                 result[False], '[more details and debugging subing85@gmail.com]')
-            QtGui.QMessageBox.critical(
-                self, 'Failed', message, QtGui.QMessageBox.Ok)
+            QtWidgets.QMessageBox.critical(
+                self, 'Failed', message, QtWidgets.QMessageBox.Ok)
             OpenMaya.MGlobal.displayInfo(message)
             return
-        QtGui.QMessageBox.information(
-            self, 'Information', message, QtGui.QMessageBox.Ok)
+        QtWidgets.QMessageBox.information(
+            self, 'Information', message, QtWidgets.QMessageBox.Ok)
         OpenMaya.MGlobal.displayInfo(message)
 
     def snapshot(self, button):
@@ -512,11 +512,11 @@ class MainWindow(QtGui.QMainWindow):
     def builds(self, tag, listwidge, *args):
         current_items = listwidge.selectedItems()
         if not current_items:
-            QtGui.QMessageBox.warning(
+            QtWidgets.QMessageBox.warning(
                 self,
                 'Warning',
                 'Not selected any shader or shader not valid!...',
-                QtGui.QMessageBox.Ok)
+                QtWidgets.QMessageBox.Ok)
             OpenMaya.MGlobal.displayWarning(
                 'Not select any shader or shader not valid.')
             return
@@ -573,7 +573,7 @@ class MainWindow(QtGui.QMainWindow):
 
 
 if __name__ == '__main__':
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     window = MainWindow(parent=None)
     window.show()
     sys.exit(app.exec_())

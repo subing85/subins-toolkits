@@ -1,6 +1,6 @@
 import os
 
-from shaderLibrary.utils import platforms
+from shaderLibrary_maya2017.utils import platforms
 
 CURRENT_PATH = os.path.dirname(__file__)
 MODULE = platforms.get_tool_kit()[0]

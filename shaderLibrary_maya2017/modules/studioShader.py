@@ -20,11 +20,11 @@ from datetime import datetime
 from maya import OpenMaya
 from pymel import core
 
-from shaderLibrary.utils import platforms
-from shaderLibrary.modules import readWrite
-from shaderLibrary.modules import studioMaya
-from shaderLibrary.modules import studioImage
-from shaderLibrary.modules import mayaNodes
+from shaderLibrary_maya2017.utils import platforms
+from shaderLibrary_maya2017.modules import readWrite
+from shaderLibrary_maya2017.modules import studioMaya
+from shaderLibrary_maya2017.modules import studioImage
+from shaderLibrary_maya2017.modules import mayaNodes
 
 
 class Shader(studioMaya.Maya):
@@ -316,3 +316,4 @@ class Shader(studioMaya.Maya):
         return networks
 
 # end ####################################################################
+

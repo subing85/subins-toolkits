@@ -1,7 +1,7 @@
 '''
 platforms.py 0.0.1 
 Date: January 15, 2019
-Last modified: January 26, 2019
+Last modified: June 13, 2019
 Author: Subin. Gopi(subing85@gmail.com)
 
 # Copyright(c) 2019, Subin Gopi
@@ -16,22 +16,19 @@ Description
 
 import platform
 
-from shaderLibrary.utils import config
+from shaderLibrary_maya2017.utils import config
 
 
 def has_valid():
-    tool_os, tool_app, tool_ver, tool_py = config.get_conig()
+    tool_oss, tool_app, tool_ver, tool_py = config.get_conig()
     operating_system, application, version, python = get_maya_platform()
     result = {True, 'Support to your maya version'}
-    if tool_os != operating_system:
-        result = {False: 'Only support \"%s\" operating system' % tool_os}
-        return result
     if tool_app not in application:
-        result = {False: 'Only support \"%s %s\" operating system' %
+        result = {False: 'Only support \"%s %s\"' %
                   (tool_app, tool_ver)}
         return result
     if tool_ver not in version:
-        result = {False: 'Only support \"%s %s\" operating system' %
+        result = {False: 'Only support \"%s %s\"' %
                   (tool_app, tool_ver)}
         return result
     return result
@@ -55,17 +52,16 @@ def get_tool_kit():
 
 
 def get_qwidget():
-    import shiboken
+    import shiboken2
     from maya import OpenMayaUI
-    from PySide import QtGui
+    from PySide2 import QtWidgets
     qwidget = OpenMayaUI.MQtUtil.mainWindow()
-    main_window = shiboken.wrapInstance(long(qwidget), QtGui.QWidget)
+    main_window = shiboken2.wrapInstance(long(qwidget), QtWidgets.QMainWindow)
     return main_window
 
 
 def get_main_window():
     from maya import cmds
-
     maya_windows = [each_win for each_win in cmds.lsUI(
         wnd=True) if cmds.window(each_win, q=True, mw=True)]
     return maya_windows[0]

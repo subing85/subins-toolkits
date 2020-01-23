@@ -1,7 +1,7 @@
 '''
 studioImage.py 0.0.1 
 Date: January 16, 2019
-Last modified: February 10, 2019
+Last modified: June 13, 2019
 Author: Subin. Gopi(subing85@gmail.com)
 
 # Copyright(c) 2018, Subin Gopi
@@ -15,13 +15,13 @@ Description
 import os
 import tempfile
 
-from PySide import QtGui
-from PySide import QtCore
+from PySide2 import QtGui
+from PySide2 import QtCore
 
 from maya import OpenMaya
 from maya import OpenMayaUI
 
-from shaderLibrary import resources
+from shaderLibrary_maya2017 import resources
 
 
 class ImageCalibration(object):
@@ -30,8 +30,8 @@ class ImageCalibration(object):
         self.name = name
         self.format = format
         if not path:
-            self.image_file = os.path.join(tempfile.gettempdir(),
-                                           'studio_image_snapshot.%s' % self.format)
+            self.image_file = os.path.join(
+                tempfile.gettempdir(), 'studio_image_snapshot.%s' % self.format)
         elif path and name:
             self.image_file = os.path.join(path, '%s.%s' % (name, format))
         self.unknown_icon = os.path.join(
@@ -72,7 +72,6 @@ class ImageCalibration(object):
         if q_size.width() < q_size.height():
             length_x = 0
             length_y = (max_value / 2) - (min_value / 2)
-
         copy = q_image.copy(length_x, length_y, width, height)
         copy.save(out_file)
         return True

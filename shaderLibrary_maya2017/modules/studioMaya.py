@@ -1,7 +1,7 @@
 '''
 stdioMaya.py 0.0.1 
 Date: January 01, 2019
-Last modified: February 10, 2019
+Last modified: June 13, 2019
 Author: Subin. Gopi(subing85@gmail.com)
 
 # Copyright(c) 2018, Subin Gopi
@@ -54,19 +54,15 @@ class Maya(object):
         if not upstream and not downstream:
             dependency_graph = OpenMaya.MItDependencyGraph(mobject, node_type)
         if upstream and not downstream:
-            dependency_graph = OpenMaya.MItDependencyGraph(
-                mobject,
-                node_type,
-                OpenMaya.MItDependencyGraph.kUpstream,
-                OpenMaya.MItDependencyGraph.kDepthFirst,
-                OpenMaya.MItDependencyGraph.kNodeLevel)
+            dependency_graph = OpenMaya.MItDependencyGraph(mobject, node_type,
+                                                           OpenMaya.MItDependencyGraph.kUpstream,
+                                                           OpenMaya.MItDependencyGraph.kDepthFirst,
+                                                           OpenMaya.MItDependencyGraph.kNodeLevel)
         if not upstream and downstream:
-            dependency_graph = OpenMaya.MItDependencyGraph(
-                mobject,
-                node_type,
-                OpenMaya.MItDependencyGraph.kDownstream,
-                OpenMaya.MItDependencyGraph.kDepthFirst,
-                OpenMaya.MItDependencyGraph.kNodeLevel)
+            dependency_graph = OpenMaya.MItDependencyGraph(mobject, node_type,
+                                                           OpenMaya.MItDependencyGraph.kDownstream,
+                                                           OpenMaya.MItDependencyGraph.kDepthFirst,
+                                                           OpenMaya.MItDependencyGraph.kNodeLevel)
         result = OpenMaya.MObjectArray()
         while not dependency_graph.isDone():
             current_item = dependency_graph.currentItem()
