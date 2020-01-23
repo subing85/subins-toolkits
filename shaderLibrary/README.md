@@ -33,9 +33,13 @@ How to run?
     > Start Maya
 
     > Run the following code in the Python script editor.
+    
+    
 
-import shaderLibrary
-shaderLibrary.show_window()
+    import shaderLibrary_maya2019
+
+    shaderLibrary_maya2019.show_window()
+    
 
 
 latest updates
