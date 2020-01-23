@@ -1,6 +1,6 @@
 https://www.subins-toolkits.com/
 
-Shader Library maya 2018 0.0.1
+Shader Library maya 2019 0.0.1
 https://www.subins-toolkits.com/shader-library
 
 A free tool for store the Shader networks in Autodesk Maya.
@@ -26,14 +26,13 @@ How to run?
 
     > Un-zip the contents of the tool to your local maya source script path. Typically something like:
 
-        win C:/Documents and Settings/USERNAME/My  Documents/maya/2018/scripts
+        win C:/Documents and Settings/USERNAME/My  Documents/maya/2019/scripts
 
-        linux /home/USERNAME/maya/2018/scripts/
+        linux /home/USERNAME/maya/2019/scripts/
 
     > Start Maya
 
     > Run the following code in the Python script editor.
-
     
     
 
@@ -46,4 +45,3 @@ How to run?
 latest updates
 
     > Bug fix for "Assign the specified shading group to renderable objects."
-

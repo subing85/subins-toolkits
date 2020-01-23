@@ -15,8 +15,8 @@ Description
 
 
 def get_conig():
-    return 'Linux', 'maya', '2018', '2.7.11'
+    return 'Linux', 'maya', '2019', '2.7.11'
 
 
 def get_tool_kit():
-    return 'shader_library_maya2018', 'Shader Library Maya-2018', '0.0.1'
+    return 'shader_library_maya2019', 'Shader Library Maya-2019', '0.0.1'

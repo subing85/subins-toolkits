@@ -20,11 +20,11 @@ from datetime import datetime
 from maya import OpenMaya
 from pymel import core
 
-from shaderLibrary_maya2018.utils import platforms
-from shaderLibrary_maya2018.modules import readWrite
-from shaderLibrary_maya2018.modules import studioMaya
-from shaderLibrary_maya2018.modules import studioImage
-from shaderLibrary_maya2018.modules import mayaNodes
+from shaderLibrary_maya2019.utils import platforms
+from shaderLibrary_maya2019.modules import readWrite
+from shaderLibrary_maya2019.modules import studioMaya
+from shaderLibrary_maya2019.modules import studioImage
+from shaderLibrary_maya2019.modules import mayaNodes
 
 
 class Shader(studioMaya.Maya):

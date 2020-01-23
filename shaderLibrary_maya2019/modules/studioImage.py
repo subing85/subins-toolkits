@@ -21,7 +21,7 @@ from PySide2 import QtCore
 from maya import OpenMaya
 from maya import OpenMayaUI
 
-from shaderLibrary_maya2018 import resources
+from shaderLibrary_maya2019 import resources
 
 
 class ImageCalibration(object):

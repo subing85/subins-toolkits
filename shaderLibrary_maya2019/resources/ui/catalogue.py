@@ -86,11 +86,11 @@ class Catalogue(QtWidgets.QWidget):
         self.zoom(self.listWidget_catalogue, self.sroll_size)
 
     def key_press_event(self, event):
-        if QtGui.QKeyEvent.key(event) == QtCore.Qt.Key_Control:    
+        if QtGui.QKeyEvent.key(event) == QtCore.Qt.Key_Control:
             self.mouse_scroll = True
 
     def key_release_event(self, event):
-        if QtGui.QKeyEventTransition.key(event) == QtCore.Qt.Key_Control:            
+        if QtGui.QKeyEvent.key(event) == QtCore.Qt.Key_Control:
             self.mouse_scroll = False
 
     def zoom(self, widget, ingrement):

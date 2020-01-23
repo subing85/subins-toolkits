@@ -26,9 +26,9 @@ from functools import partial
 
 from maya import OpenMaya
 
-from shaderLibrary_maya2018.modules import studioMaya
-from shaderLibrary_maya2018.modules import studioImage
-from shaderLibrary_maya2018 import resources
+from shaderLibrary_maya2019.modules import studioMaya
+from shaderLibrary_maya2019.modules import studioImage
+from shaderLibrary_maya2019 import resources
 
 
 class Model(QtWidgets.QWidget):

@@ -20,7 +20,7 @@ import warnings
 from PySide2 import QtWidgets
 from PySide2 import QtGui
 
-from shaderLibrary_maya2018 import resources
+from shaderLibrary_maya2019 import resources
 
 
 class Folder(object):
