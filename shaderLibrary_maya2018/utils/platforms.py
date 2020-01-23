@@ -16,7 +16,7 @@ Description
 
 import platform
 
-from shaderLibrary_maya2017.utils import config
+from shaderLibrary_maya2018.utils import config
 
 
 def has_valid():
