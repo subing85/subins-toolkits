@@ -48,6 +48,13 @@ How to run?
     > Start Maya
 
     > Run the following code in the Python script editor.
+    
 
-import smartDeformer_maya2018
-smartDeformer_maya2018.show_window()
+	import smartDeformer_maya2018
+	smartDeformer_maya2018.show_window()
+	
+Bug fix
+
+    > maya 2018
+	wire deformer convertion fix 
+	
