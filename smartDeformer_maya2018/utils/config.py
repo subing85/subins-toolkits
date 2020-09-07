@@ -19,4 +19,4 @@ def get_conig():
 
 
 def get_tool_kit():
-    return 'smart_deformer_maya2018', 'Smart Deformer Maya-2018', '0.0.1'
+    return 'smart_deformer_maya2018', 'Smart Deformer Maya-2018', '0.0.2'

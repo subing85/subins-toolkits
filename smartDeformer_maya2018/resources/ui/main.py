@@ -13,7 +13,6 @@ Description
     None.
 '''
 
-
 import os
 import sys
 import webbrowser
@@ -57,6 +56,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.weights = weights.Weights(parent=self)
         self.tool_kit_object, self.tool_kit_name, self.version = platforms.get_tool_kit()
         self.tool_kit_titile = '{} {}'.format(self.tool_kit_name, self.version)
+        print self.tool_kit_object, self.tool_kit_name, self.version
+        print self.tool_kit_titile
         self.width, self.height = [500, 800]
 
         if cmds.dockControl(self.tool_kit_object, q=1, ex=1):
