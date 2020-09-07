@@ -15,7 +15,6 @@ Description
     The purpose of the stdioMaya to validate, getting and setting maya objects.  
 '''
 
-
 from maya import OpenMaya
 from maya import OpenMayaAnim
 
@@ -251,7 +250,7 @@ class Maya(object):
             if not skinclusters:
                 continue
             if skinclusters.length()==0:
-                continue            
+                continue
             joints = self.getSkinclusterJoints(skinclusters[0])
             if not joints:
                 continue
