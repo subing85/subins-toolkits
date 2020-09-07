@@ -56,5 +56,5 @@ How to run?
 	
 Bug fix
 
-    > maya 2019
+    > maya 2018
 	wire deformer convertion fix 	
