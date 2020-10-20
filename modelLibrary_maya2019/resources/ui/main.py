@@ -27,16 +27,16 @@ from functools import partial
 from maya import OpenMaya
 from maya import cmds
 
-from modelLibrary_maya2018.modules import readWrite
-from modelLibrary_maya2018.modules import studioFolder
-from modelLibrary_maya2018.modules import studioMaya
-from modelLibrary_maya2018.modules import studioModel
+from modelLibrary_maya2019.modules import readWrite
+from modelLibrary_maya2019.modules import studioFolder
+from modelLibrary_maya2019.modules import studioMaya
+from modelLibrary_maya2019.modules import studioModel
 
-from modelLibrary_maya2018.resources.ui import preferences
-from modelLibrary_maya2018.resources.ui import catalogue
-from modelLibrary_maya2018.resources.ui import model
-from modelLibrary_maya2018.utils import platforms
-from modelLibrary_maya2018 import resources
+from modelLibrary_maya2019.resources.ui import preferences
+from modelLibrary_maya2019.resources.ui import catalogue
+from modelLibrary_maya2019.resources.ui import model
+from modelLibrary_maya2019.utils import platforms
+from modelLibrary_maya2019 import resources
 
 
 class MainWindow(QtWidgets.QMainWindow):

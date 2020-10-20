@@ -24,7 +24,7 @@ import tempfile
 
 from datetime import datetime
 
-from modelLibrary_maya2018 import resources
+from modelLibrary_maya2019 import resources
 
 
 class ReadWrite(object):

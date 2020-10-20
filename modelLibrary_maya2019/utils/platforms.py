@@ -16,7 +16,7 @@ Description
 
 import platform
 
-from modelLibrary_maya2018.utils import config
+from modelLibrary_maya2019.utils import config
 
 
 def has_valid():

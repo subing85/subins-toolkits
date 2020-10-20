@@ -15,7 +15,7 @@ Description
 
 
 def get_conig():
-    return 'Linux', 'maya', '2018', '2.7.6'
+    return 'Linux', 'maya', '2019', '2.7.6'
 
 
 def get_tool_kit():
