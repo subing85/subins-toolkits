@@ -22,9 +22,9 @@ from PySide2 import QtWidgets
 from functools import partial
 from datetime import datetime
 
-from modelLibrary_maya2017 import resources
-from modelLibrary_maya2017.modules import readWrite
-from modelLibrary_maya2017.utils import platforms
+from modelLibrary_maya2018 import resources
+from modelLibrary_maya2018.modules import readWrite
+from modelLibrary_maya2018.utils import platforms
 
 
 class Preference(QtWidgets.QWidget):

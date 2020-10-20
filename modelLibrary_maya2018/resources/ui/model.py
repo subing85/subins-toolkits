@@ -26,11 +26,11 @@ from functools import partial
 
 from maya import OpenMaya
 
-from modelLibrary_maya2017.modules import studioMaya
-from modelLibrary_maya2017.modules import studioImage
-from modelLibrary_maya2017.modules import studioModel
+from modelLibrary_maya2018.modules import studioMaya
+from modelLibrary_maya2018.modules import studioImage
+from modelLibrary_maya2018.modules import studioModel
 
-from modelLibrary_maya2017 import resources
+from modelLibrary_maya2018 import resources
 
 
 class Model(QtWidgets.QWidget):

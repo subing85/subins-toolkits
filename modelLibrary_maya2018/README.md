@@ -33,7 +33,7 @@ How to run?
 
     > Run the following code in the Python script editor.
 
-	import modelLibrary_maya2017
-	modelLibrary_maya2017.show_window()
+	import modelLibrary_maya2018
+	modelLibrary_maya2018.show_window()
 
 

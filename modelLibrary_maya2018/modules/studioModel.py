@@ -19,10 +19,10 @@ from datetime import datetime
 
 from maya import OpenMaya
 
-from modelLibrary_maya2017.utils import platforms
-from modelLibrary_maya2017.modules import readWrite
-from modelLibrary_maya2017.modules import studioMaya
-from modelLibrary_maya2017.modules import studioImage
+from modelLibrary_maya2018.utils import platforms
+from modelLibrary_maya2018.modules import readWrite
+from modelLibrary_maya2018.modules import studioMaya
+from modelLibrary_maya2018.modules import studioImage
 
 
 class Model(studioMaya.Maya):
