@@ -1,0 +1,11 @@
+{
+    "pipe": "asset", 
+    "data": {
+        "category": "character", 
+        "lookdev": "None", 
+        "name": "batman", 
+        "version": "2.0.2", 
+        "model": "0.0.0", 
+        "type": "lookdev"
+    }
+}
