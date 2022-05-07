@@ -24,16 +24,16 @@ from PySide2 import QtGui
 from PySide2 import QtWidgets
 from functools import partial
 
-from assetLibrary_maya2017.modules import readWrite
-from assetLibrary_maya2017.modules import studioFolder
-from assetLibrary_maya2017.modules import studioAsset
-from assetLibrary_maya2017.modules import studioPrint
-from assetLibrary_maya2017.resources.ui import preferences
-from assetLibrary_maya2017.resources.ui import catalogue
-from assetLibrary_maya2017.resources.ui import asset
-from assetLibrary_maya2017.utils import platforms
-from assetLibrary_maya2017.core import inputs
-from assetLibrary_maya2017 import resources
+from assetLibrary_maya2018.modules import readWrite
+from assetLibrary_maya2018.modules import studioFolder
+from assetLibrary_maya2018.modules import studioAsset
+from assetLibrary_maya2018.modules import studioPrint
+from assetLibrary_maya2018.resources.ui import preferences
+from assetLibrary_maya2018.resources.ui import catalogue
+from assetLibrary_maya2018.resources.ui import asset
+from assetLibrary_maya2018.utils import platforms
+from assetLibrary_maya2018.core import inputs
+from assetLibrary_maya2018 import resources
 
 
 class MainWindow(QtWidgets.QMainWindow):

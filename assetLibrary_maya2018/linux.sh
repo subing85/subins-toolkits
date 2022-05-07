@@ -11,5 +11,5 @@ echo "www.subins-toolkits.comm"
 echo "subing85@gmail.com"
 echo ""
 
-python $STUDIO_PATH"/assetLibrary/__init__.py"
+python $STUDIO_PATH"/assetLibrary_maya2018/__init__.py"
 # End: : : : : : : : : : : : : : : : : : : : : : : : : : : : : : : : : : :
