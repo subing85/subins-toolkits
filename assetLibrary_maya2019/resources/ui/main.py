@@ -166,7 +166,10 @@ class MainWindow(QtWidgets.QMainWindow):
         self.action_remove.setText('Remove Folder')
         self.action_rename = QtWidgets.QAction(self)
         self.action_rename.setObjectName('action_rename')
-        self.action_rename.setText('Rename Folder')
+        self.action_rename.setText('Rename Folder')        
+        self.action_open = QtWidgets.QAction(self)
+        self.action_open.setObjectName('action_open')
+        self.action_open.setText('Open Folder')                
         self.action_refresh = QtWidgets.QAction(self)
         self.action_refresh.setObjectName('action_refresh')
         self.action_refresh.setText('Refresh')
@@ -195,6 +198,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.menu_file.addSeparator()
         self.menu_file.addAction(self.menu_default.menuAction())
         self.menu_file.addSeparator()
+        self.menu_file.addAction(self.action_open)        
         self.menu_file.addAction(self.action_rename)
         self.menu_file.addAction(self.action_remove)
         self.menu_file.addSeparator()
@@ -206,6 +210,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.menu_help.addAction(self.action_abouttoolkits)
         self.action_preferences.triggered.connect(self.show_preference)
         self.action_create.triggered.connect(self.create)
+        self.action_open.triggered.connect(self.open)        
         self.action_rename.triggered.connect(self.rename)
         self.action_remove.triggered.connect(self.remove)
         self.action_refresh.triggered.connect(self.refresh)
@@ -267,6 +272,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.contex_menu.addSeparator()
         self.contex_menu.addAction(self.menu_default.menuAction())
         self.contex_menu.addSeparator()
+        self.contex_menu.addAction(self.action_open)        
         self.contex_menu.addAction(self.action_rename)
         self.contex_menu.addAction(self.action_remove)
         self.contex_menu.addSeparator()
@@ -357,6 +363,16 @@ class MainWindow(QtWidgets.QMainWindow):
         self.load_library_folders(self.treewidget)
         self.studio_print.display_info(
             '\"%s\" Folder create - success!...' % message)
+
+    def open(self):
+        if not self.treewidget.selectedItems():
+            QtGui.QMessageBox.warning(
+                self, 'Warning', 'Not found any selection\nSelect the folder and try', QtGui.QMessageBox.Ok)
+            return
+        current_item = self.treewidget.selectedItems()[-1]
+        current_path = str(current_item.toolTip(0))
+        webbrowser.open(current_path)  
+        print(current_path)        
 
     def rename(self):
         folder_name, ok = QtWidgets.QInputDialog.getText(
@@ -457,7 +473,7 @@ class MainWindow(QtWidgets.QMainWindow):
             icon.addPixmap(QtGui.QPixmap(icon_path),
                            QtGui.QIcon.Normal, QtGui.QIcon.Off)
             item.setIcon(icon)
-            item.setTextAlignment(QtCore.Qt.AlignHCenter |
+            item.setTextAlignment(QtCore.Qt.AlignHCenter | 
                                   QtCore.Qt.AlignBottom)
             thread.start_new_thread(
                 self.validte_asset_publish, (each_file, item,))
@@ -467,7 +483,7 @@ class MainWindow(QtWidgets.QMainWindow):
         valid = studio_asset.had_valid(file)
         if valid:
             return
-        item.setFlags(QtCore.Qt.ItemIsSelectable |
+        item.setFlags(QtCore.Qt.ItemIsSelectable | 
                       QtCore.Qt.ItemIsDragEnabled | QtCore.Qt.ItemIsUserCheckable)
 
     def collect_child_items(self, parent):
@@ -522,7 +538,7 @@ class MainWindow(QtWidgets.QMainWindow):
             path=self.source_file_path, image=self.q_image)
         if studio_asset.had_file(current_path, label):
             replay = QtWidgets.QMessageBox.warning(
-                self, 'Warning', 
+                self, 'Warning',
                 'Already a file with the same name in the publish\n\"%s\"\nIf you want to overwrite press Yes' % label,
                 QtWidgets.QMessageBox.Yes, QtWidgets.QMessageBox.No)
             self.studio_print.display_warning(
@@ -654,7 +670,7 @@ class MainWindow(QtWidgets.QMainWindow):
                             pass
                     if platform.system() == 'Linux':
                         try:
-                            os.system('xdg-open \"%s\"' %
+                            os.system('xdg-open \"%s\"' % 
                                       os.path.dirname(result))
                         except:
                             pass

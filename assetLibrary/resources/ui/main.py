@@ -141,7 +141,7 @@ class MainWindow(QtGui.QMainWindow):
         self.menu_bar = QtGui.QMenuBar(self)
         self.menu_bar.setGeometry(QtCore.QRect(0, 0, 960, 25))
         self.menu_bar.setObjectName('menu_bar')
-        self.setMenuBar(self.menu_bar)
+        self.setMenuBar(self.menu_bar)        
         self.menu_file = QtGui.QMenu(self.menu_bar)
         self.menu_file.setObjectName('menu_file')
         self.menu_file.setTitle('File')
@@ -163,7 +163,10 @@ class MainWindow(QtGui.QMainWindow):
         self.action_remove.setText('Remove Folder')
         self.action_rename = QtGui.QAction(self)
         self.action_rename.setObjectName('action_rename')
-        self.action_rename.setText('Rename Folder')
+        self.action_rename.setText('Rename Folder')        
+        self.action_open = QtGui.QAction(self)
+        self.action_open.setObjectName('action_open')
+        self.action_open.setText('Open Folder')                
         self.action_refresh = QtGui.QAction(self)
         self.action_refresh.setObjectName('action_refresh')
         self.action_refresh.setText('Refresh')
@@ -191,7 +194,8 @@ class MainWindow(QtGui.QMainWindow):
         self.menu_file.addAction(self.action_create)
         self.menu_file.addSeparator()
         self.menu_file.addAction(self.menu_default.menuAction())
-        self.menu_file.addSeparator()
+        self.menu_file.addSeparator()        
+        self.menu_file.addAction(self.action_open)       
         self.menu_file.addAction(self.action_rename)
         self.menu_file.addAction(self.action_remove)
         self.menu_file.addSeparator()
@@ -202,7 +206,8 @@ class MainWindow(QtGui.QMainWindow):
         self.menu_help.addAction(self.action_aboutool)
         self.menu_help.addAction(self.action_abouttoolkits)
         self.action_preferences.triggered.connect(self.show_preference)
-        self.action_create.triggered.connect(self.create)
+        self.action_create.triggered.connect(self.create)        
+        self.action_open.triggered.connect(self.open)       
         self.action_rename.triggered.connect(self.rename)
         self.action_remove.triggered.connect(self.remove)
         self.action_refresh.triggered.connect(self.refresh)
@@ -264,6 +269,7 @@ class MainWindow(QtGui.QMainWindow):
         self.contex_menu.addSeparator()
         self.contex_menu.addAction(self.menu_default.menuAction())
         self.contex_menu.addSeparator()
+        self.contex_menu.addAction(self.action_open)
         self.contex_menu.addAction(self.action_rename)
         self.contex_menu.addAction(self.action_remove)
         self.contex_menu.addSeparator()
@@ -354,6 +360,16 @@ class MainWindow(QtGui.QMainWindow):
         self.load_library_folders(self.treewidget)
         self.studio_print.display_info(
             '\"%s\" Folder create - success!...' % message)
+        
+    def open(self):
+        if not self.treewidget.selectedItems():
+            QtGui.QMessageBox.warning(
+                self, 'Warning', 'Not found any selection\nSelect the folder and try', QtGui.QMessageBox.Ok)
+            return
+        current_item = self.treewidget.selectedItems()[-1]
+        current_path = str(current_item.toolTip(0))
+        webbrowser.open(current_path)  
+        print(current_path)                
 
     def rename(self):
         folder_name, ok = QtGui.QInputDialog.getText(
@@ -454,7 +470,7 @@ class MainWindow(QtGui.QMainWindow):
             icon.addPixmap(QtGui.QPixmap(icon_path),
                            QtGui.QIcon.Normal, QtGui.QIcon.Off)
             item.setIcon(icon)
-            item.setTextAlignment(QtCore.Qt.AlignHCenter |
+            item.setTextAlignment(QtCore.Qt.AlignHCenter | 
                                   QtCore.Qt.AlignBottom)
             thread.start_new_thread(
                 self.validte_asset_publish, (each_file, item,))
@@ -464,7 +480,7 @@ class MainWindow(QtGui.QMainWindow):
         valid = studio_asset.had_valid(file)
         if valid:
             return
-        item.setFlags(QtCore.Qt.ItemIsSelectable |
+        item.setFlags(QtCore.Qt.ItemIsSelectable | 
                       QtCore.Qt.ItemIsDragEnabled | QtCore.Qt.ItemIsUserCheckable)
 
     def collect_child_items(self, parent):
@@ -519,7 +535,7 @@ class MainWindow(QtGui.QMainWindow):
             path=self.source_file_path, image=self.q_image)
         if studio_asset.had_file(current_path, label):
             replay = QtGui.QMessageBox.warning(
-                self, 'Warning', 
+                self, 'Warning',
                 'Already a file with the same name in the publish\n\"%s\"\nIf you want to overwrite press Yes' % label,
                 QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
             self.studio_print.display_warning(
@@ -651,7 +667,7 @@ class MainWindow(QtGui.QMainWindow):
                             pass
                     if platform.system() == 'Linux':
                         try:
-                            os.system('xdg-open \"%s\"' %
+                            os.system('xdg-open \"%s\"' % 
                                       os.path.dirname(result))
                         except:
                             pass
