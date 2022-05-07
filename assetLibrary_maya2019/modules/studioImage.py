@@ -18,7 +18,7 @@ import tempfile
 from PySide2 import QtGui
 from PySide2 import QtCore
 
-from assetLibrary_maya2018 import resources
+from assetLibrary_maya2019 import resources
 
 
 class ImageCalibration(object):
