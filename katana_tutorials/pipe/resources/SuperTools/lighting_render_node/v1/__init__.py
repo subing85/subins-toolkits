@@ -7,5 +7,5 @@ from Node import LightingRenderNode
 
 def GetEditor():
     from Editor import LightingRenderEditor
-    return LightingRenderEditor
 
+    return LightingRenderEditor

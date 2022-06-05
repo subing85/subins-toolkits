@@ -1,4 +1,4 @@
-'''
+"""
 readWrite.py 0.0.1 
 Date: January 01, 2019
 Last modified: January 26, 2019
@@ -12,7 +12,7 @@ Author: Subin. Gopi(subing85@gmail.com)
 Description
     readWrite is the function set for custom data structure. 
     The purpose of the readWrite to create, getting and setting the model data.  
-'''
+"""
 
 
 import os
@@ -28,53 +28,58 @@ from modelLibrary_maya2018 import resources
 
 
 class ReadWrite(object):
-
     def __init__(self, **kwargs):
-        comment = 'subin gopi tool kits'
-        created_date = datetime.now().strftime('%Y/%d/%B - %I:%M:%S:%p')
-        description = 'This data contain information about subin gopi tool kits'
-        type = 'generic'
+        comment = "subin gopi tool kits"
+        created_date = datetime.now().strftime(
+            "%Y/%d/%B - %I:%M:%S:%p"
+        )
+        description = (
+            "This data contain information about subin gopi tool kits"
+        )
+        type = "generic"
         valid = True
         data = None
-        tag = 'generic'
+        tag = "generic"
         self.path = tempfile.gettempdir()
-        self.format = 'json'
+        self.format = "json"
         self.name = None
-        if 'path' in kwargs:
-            self.path = kwargs['path']
-        if 'format' in kwargs:
-            self.format = kwargs['format']
-        if 'name' in kwargs:
-            self.name = kwargs['name']
-        if 'c' in kwargs:
-            comment = kwargs['c']
-        if 'cd' in kwargs:
-            created_date = kwargs['cd']
-        if 'd' in kwargs:
-            description = kwargs['d']
-        if 't' in kwargs:
-            type = kwargs['t']
-        if 'v' in kwargs:
-            valid = kwargs['v']
-        if 'data' in kwargs:
-            data = kwargs['data']
-        if 'tag' in kwargs:
-            tag = kwargs['tag']
-        self.datas = {'comment': comment,
-                      'created_date': created_date,
-                      'author': 'Subin Gopi',
-                      '#copyright': '(c) 2019, Subin Gopi All rights reserved.',
-                      'warning': '# WARNING! All changes made in this file will be lost!',
-                      'description': description,
-                      'type': type,
-                      'tag': tag,
-                      'valid': valid,
-                      'user': getpass.getuser(),
-                      'data': data
-                      }
+        if "path" in kwargs:
+            self.path = kwargs["path"]
+        if "format" in kwargs:
+            self.format = kwargs["format"]
+        if "name" in kwargs:
+            self.name = kwargs["name"]
+        if "c" in kwargs:
+            comment = kwargs["c"]
+        if "cd" in kwargs:
+            created_date = kwargs["cd"]
+        if "d" in kwargs:
+            description = kwargs["d"]
+        if "t" in kwargs:
+            type = kwargs["t"]
+        if "v" in kwargs:
+            valid = kwargs["v"]
+        if "data" in kwargs:
+            data = kwargs["data"]
+        if "tag" in kwargs:
+            tag = kwargs["tag"]
+        self.datas = {
+            "comment": comment,
+            "created_date": created_date,
+            "author": "Subin Gopi",
+            "#copyright": "(c) 2019, Subin Gopi All rights reserved.",
+            "warning": "# WARNING! All changes made in this file will be lost!",
+            "description": description,
+            "type": type,
+            "tag": tag,
+            "valid": valid,
+            "user": getpass.getuser(),
+            "data": data,
+        }
 
         self.file_path = os.path.join(
-            self.path, '%s.%s' % (self.name, self.format))
+            self.path, "%s.%s" % (self.name, self.format)
+        )
 
     def has_file(self):
         if os.path.isfile(self.file_path):
@@ -88,7 +93,7 @@ class ReadWrite(object):
         for each_key in self.datas:
             if each_key not in data:
                 return False
-        if not data['valid']:
+        if not data["valid"]:
             return False
         return True
 
@@ -108,27 +113,29 @@ class ReadWrite(object):
         data = self.get_all()
         if not data:
             return None
-        return data['data']
+        return data["data"]
 
     def get_info(self):
         data = self.get_all()
         info_data = {}
         for k, v in data.items():
-            if k == 'data':
+            if k == "data":
                 continue
             info_data.setdefault(k, v)
         return info_data
 
     def get_all(self):
         if not os.path.isfile(self.file_path):
-            warnings.warn('Not fount  file %s' % self.file_path, Warning)
+            warnings.warn(
+                "Not fount  file %s" % self.file_path, Warning
+            )
             return
         try:
             data = read(self.file_path)
         except Exception as error:
             warnings.warn(error, Warning)
             data = None
-        if 'data' not in data:
+        if "data" not in data:
             return None
         return data
 
@@ -139,7 +146,10 @@ class ReadWrite(object):
         paths = []
         x = 0
         while x < len(path_data) + 1:
-            for index,  path, in path_data.items():
+            for (
+                index,
+                path,
+            ) in path_data.items():
                 if int(index) != x:
                     continue
                 paths.append(path.encode())
@@ -159,19 +169,19 @@ class ReadWrite(object):
             file_data = read(os.path.join(self.path, each_file))
             if not file_data:
                 continue
-            if 'valid' not in file_data:
+            if "valid" not in file_data:
                 continue
-            if not file_data['valid']:
+            if not file_data["valid"]:
                 continue
-            if 'type' not in file_data:
+            if "type" not in file_data:
                 continue
-            if 'tag' not in file_data:
+            if "tag" not in file_data:
                 continue
             bundle = os.path.splitext(os.path.basename(each_file))[0]
             data = {}
-            data['tag'] = file_data['tag'].encode()
-            data['path'] = os.path.join(self.path, each_file)
-            data['data'] = file_data['data']
+            data["tag"] = file_data["tag"].encode()
+            data["path"] = os.path.join(self.path, each_file)
+            data["data"] = file_data["data"]
             bundles.setdefault(bundle, data)
         return bundles
 
@@ -185,28 +195,29 @@ def write(path, data):
             os.remove(file)
         except Exception as result:
             print(result)
-    result = 'successfully created Database {}'.format(path)
+    result = "successfully created Database {}".format(path)
     genericData = data.copy()
     currentTime = time.time()
     try:
         data = json.dumps(genericData, indent=4)
-        jsonData = open(path, 'w')
+        jsonData = open(path, "w")
         jsonData.write(data)
         jsonData.close()
         os.utime(path, (currentTime, currentTime))
     except Exception as exceptResult:
         result = str(exceptResult)
-    print('\n#write result\t- ', result)
+    print("\n#write result\t- ", result)
 
 
 def read(path):
     data = {}
-    openData = open(path, 'r')
+    openData = open(path, "r")
     try:
         data = json.load(openData)
     except Exception as result:
         warnings.warn(str(result))
     openData.close()
     return data
+
 
 # end ####################################################################

@@ -1,4 +1,4 @@
-'''
+"""
 sg_studio_uv.py 0.0.1 
 Date: June 24, 2019
 Last modified: August 03, 2019
@@ -12,7 +12,7 @@ https://www.subins-toolkits.com/
 
 Description
     None
-'''
+"""
 
 import sys
 
@@ -30,11 +30,12 @@ def initializePlugin(plugin):  # Initialize the script plug-in
         pluginFn.registerCommand(
             PARAMETERS.k_plugin_name,
             PARAMETERS.cmdCreator,
-            PARAMETERS.syntaxCreator
+            PARAMETERS.syntaxCreator,
         )
     except:
         sys.stderr.write(
-            "Failed to register command: %s\n" % PARAMETERS.k_plugin_name
+            "Failed to register command: %s\n"
+            % PARAMETERS.k_plugin_name
         )
         raise
     studio_menu.create_menu()
@@ -43,12 +44,11 @@ def initializePlugin(plugin):  # Initialize the script plug-in
 def uninitializePlugin(plugin):  # Uninitialize the script plug-in
     pluginFn = OpenMayaMPx.MFnPlugin(plugin)
     try:
-        pluginFn.deregisterCommand(
-            PARAMETERS.k_plugin_name
-        )
+        pluginFn.deregisterCommand(PARAMETERS.k_plugin_name)
     except:
         sys.stderr.write(
-            "Failed to unregister command: %s\n" % PARAMETERS.k_plugin_name
+            "Failed to unregister command: %s\n"
+            % PARAMETERS.k_plugin_name
         )
         raise
     studio_menu.remove_menu()

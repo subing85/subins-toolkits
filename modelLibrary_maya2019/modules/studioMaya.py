@@ -1,4 +1,4 @@
-'''
+"""
 stdioMaya.py 0.0.1 
 Date: January 01, 2019
 Last modified: January 26, 2019
@@ -13,17 +13,16 @@ Description
     stdioMaya is the function set for manage the maya objects.
     Its is custom api package of Maya API based on requirements.
     The purpose of the stdioMaya to validate, getting and setting maya objects.  
-'''
+"""
 
 
 from maya import OpenMaya
 
 
 class Maya(object):
-
     def __init__(self, **kwargs):
-        if 'node' in kwargs:
-            node = kwargs['node']
+        if "node" in kwargs:
+            node = kwargs["node"]
 
     def getDagPath(self, node):
         mselection = OpenMaya.MSelectionList()
@@ -73,7 +72,9 @@ class Maya(object):
     def createFloatArray(self, python_list):
         mfloat_array = OpenMaya.MFloatArray()
         mscript_util = OpenMaya.MScriptUtil()
-        mscript_util.createFloatArrayFromList(python_list, mfloat_array)
+        mscript_util.createFloatArrayFromList(
+            python_list, mfloat_array
+        )
         return mfloat_array
 
     def createIntArray(self, python_list):
@@ -117,13 +118,16 @@ class Maya(object):
         if isinstance(mobject, OpenMaya.MDagPath):
             mobject = mobject.node()
         if not shading_group:
-            shading_group = self.getMObject('initialShadingGroup')
+            shading_group = self.getMObject("initialShadingGroup")
         if isinstance(shading_group, str):
             shading_group = self.getMObject(shading_group)
         mfn_set = OpenMaya.MFnSet(shading_group)
         mfn_set.addMember(mobject)
 
     def undoChunk(self, tag):
-        OpenMaya.MGlobal.executeCommand('undoInfo -%sChunk;' % tag, False, False)
+        OpenMaya.MGlobal.executeCommand(
+            "undoInfo -%sChunk;" % tag, False, False
+        )
+
 
 # end ####################################################################

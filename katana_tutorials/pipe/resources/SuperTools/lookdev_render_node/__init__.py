@@ -5,14 +5,13 @@
 
 import v1
 
-NODE_TYPE = 'studio_lookdev_render'
+NODE_TYPE = "studio_lookdev_render"
 
 arguments = (
-    'SuperTool',
+    "SuperTool",
     2,
     NODE_TYPE,  # type of the node
-    (v1.LookdevRenderNode, v1.GetEditor)
-    )
+    (v1.LookdevRenderNode, v1.GetEditor),
+)
 
 PluginRegistry = [arguments]
-

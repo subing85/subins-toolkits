@@ -6,34 +6,43 @@ CURRENT_PATH = os.path.dirname(__file__)
 
 
 def getToolKit():
-    return 'Studio Maya Interpreter', 'smi', '0.0.1'
+    return "Studio Maya Interpreter", "smi", "0.0.1"
 
 
 def getModuleName():
-    return 'studio_maya'
+    return "studio_maya"
 
 
 def getIconPath():
-    return os.path.join(CURRENT_PATH, 'icons')
+    return os.path.join(CURRENT_PATH, "icons")
 
 
 def getLogo():
-    return os.path.join(CURRENT_PATH, 'icons', 'logo.png')
+    return os.path.join(CURRENT_PATH, "icons", "logo.png")
 
 
 def getWorkspacePath():
-    if platform.system() == 'Windows':
+    if platform.system() == "Windows":
         return os.path.join(
-            os.getenv('USERPROFILE'), 'Documents', 'studio_toolkits', getModuleName())
-    if platform.system() == 'Linux':
-        return os.path.join(os.getenv('HOME'), 'Documents', 'studio_toolkits', getModuleName())
+            os.getenv("USERPROFILE"),
+            "Documents",
+            "studio_toolkits",
+            getModuleName(),
+        )
+    if platform.system() == "Linux":
+        return os.path.join(
+            os.getenv("HOME"),
+            "Documents",
+            "studio_toolkits",
+            getModuleName(),
+        )
 
 
 def getPreferenceFile():
-    preference_path = os.path.join(getWorkspacePath(), 'preference')
+    preference_path = os.path.join(getWorkspacePath(), "preference")
     if not os.path.isdir(preference_path):
         os.makedirs(preference_path)
-    return os.path.join(preference_path, 'config.xml')
+    return os.path.join(preference_path, "config.xml")
 
 
 def getOperatingSystem():
@@ -42,60 +51,60 @@ def getOperatingSystem():
 
 def getRootPath():
     operating_system = getOperatingSystem()
-    if operating_system == 'Windows':
-        return 'C:/', 'Autodesk/Maya', 'mayapy.exe'
-    if operating_system == 'Linux':
-        return '/', 'autodesk/maya', 'mayapy'
+    if operating_system == "Windows":
+        return "C:/", "Autodesk/Maya", "mayapy.exe"
+    if operating_system == "Linux":
+        return "/", "autodesk/maya", "mayapy"
 
 
 def getEditor():
     operating_system = getOperatingSystem()
-    if operating_system == 'Windows':
-        return 'start wordpad'
-    if operating_system == 'Linux':
-        return 'kwrite'
+    if operating_system == "Windows":
+        return "start wordpad"
+    if operating_system == "Linux":
+        return "kwrite"
 
 
 def getFormats():
     formats = {
-        'maya': ['.ma', '.mb'],
-        'code': ['.py', '.pyc', '.mel']
+        "maya": [".ma", ".mb"],
+        "code": [".py", ".pyc", ".mel"],
     }
     return formats
 
 
 def getImages():
     images = {
-        '.ma': 'maya_ascii',
-        '.mb': 'maya_binary',
-        '.py': 'python',
-        '.pyc': 'Python_compile',
-        '.mel': 'mel'
+        ".ma": "maya_ascii",
+        ".mb": "maya_binary",
+        ".py": "python",
+        ".pyc": "Python_compile",
+        ".mel": "mel",
     }
     return images
 
 
 def getTempCodeFile():
-    return os.path.join(tempfile.gettempdir(), 'studio_maya_temp.py')
+    return os.path.join(tempfile.gettempdir(), "studio_maya_temp.py")
 
 
 def getInputPath():
-    path = os.path.join(CURRENT_PATH, 'inputs').replace('\\', '/')
+    path = os.path.join(CURRENT_PATH, "inputs").replace("\\", "/")
     return path
 
 
 def getScriptPath():
-    path = os.path.join(CURRENT_PATH, 'scripts')
+    path = os.path.join(CURRENT_PATH, "scripts")
     return path
 
 
 def getToolKitLink():
-    return 'https://www.subins-toolkits.com'
+    return "https://www.subins-toolkits.com"
 
 
 def getToolKitHelpLink():
-    return 'https://www.subins-toolkits.com/studio-maya'
+    return "https://www.subins-toolkits.com/studio-maya"
 
 
 def getDownloadLink():
-    return 'https://www.subins-toolkits.com/studio-maya'
+    return "https://www.subins-toolkits.com/studio-maya"

@@ -1,4 +1,4 @@
-'''
+"""
 resource 0.0.1 
 Date: February 11, 2019
 Last modified: February 24, 2019
@@ -11,7 +11,7 @@ Author: Subin. Gopi(subing85@gmail.com)
 
 Description
     None.
-'''
+"""
 
 import os
 import platform
@@ -23,48 +23,57 @@ MODULE = platforms.get_tool_kit()[0]
 
 
 def getInputPath(module=None):
-    return os.path.join(CURRENT_PATH, 'inputs', '{}.json'.format(module))
+    return os.path.join(
+        CURRENT_PATH, "inputs", "{}.json".format(module)
+    )
 
 
 def getIconPath():
-    return os.path.join(CURRENT_PATH, 'icons')
+    return os.path.join(CURRENT_PATH, "icons")
 
 
 def getPreferencePath():
-    return os.path.join(getWorkspacePath(), 'preference')
+    return os.path.join(getWorkspacePath(), "preference")
 
 
 def getWorkspacePath():
-    if platform.system() == 'Windows':
+    if platform.system() == "Windows":
         return os.path.abspath(
-            os.getenv('USERPROFILE') + '/Documents').replace('\\', '/')
-    if platform.system() == 'Linux':
-        return os.path.join(os.getenv('HOME'), 'Documents', MODULE)
+            os.getenv("USERPROFILE") + "/Documents"
+        ).replace("\\", "/")
+    if platform.system() == "Linux":
+        return os.path.join(os.getenv("HOME"), "Documents", MODULE)
 
 
 def getPublishDirectory():
-    return os.path.join(os.path.expanduser('~'), 'Walk_cycle', 'characters')
+    return os.path.join(
+        os.path.expanduser("~"), "Walk_cycle", "characters"
+    )
 
 
 def getResourceTypes():
-    data = {'preference': getPreferencePath(
-    ), 'shader': getWorkspacePath(), 'generic': None}
+    data = {
+        "preference": getPreferencePath(),
+        "shader": getWorkspacePath(),
+        "generic": None,
+    }
     return data
 
 
 def getStandalone():
-    return os.path.join(CURRENT_PATH, 'inputs', 'standalone.py')
+    return os.path.join(CURRENT_PATH, "inputs", "standalone.py")
 
 
 def getToolKitLink():
-    return 'https://www.subins-toolkits.com'
+    return "https://www.subins-toolkits.com"
 
 
 def getToolKitHelpLink():
-    return 'https://vimeo.com/322552816'
+    return "https://vimeo.com/322552816"
 
 
 def getDownloadLink():
-    return 'https://www.subins-toolkits.com/asset-library'
+    return "https://www.subins-toolkits.com/asset-library"
+
 
 # end ####################################################################

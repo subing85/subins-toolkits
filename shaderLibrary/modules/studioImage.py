@@ -1,4 +1,4 @@
-'''
+"""
 studioImage.py 0.0.1 
 Date: January 16, 2019
 Last modified: February 10, 2019
@@ -10,7 +10,7 @@ Author: Subin. Gopi(subing85@gmail.com)
 
 Description
     None.
-'''
+"""
 
 import os
 import tempfile
@@ -25,27 +25,35 @@ from shaderLibrary import resources
 
 
 class ImageCalibration(object):
-
-    def __init__(self, path=None, name=None, format='png'):
+    def __init__(self, path=None, name=None, format="png"):
         self.name = name
         self.format = format
         if not path:
-            self.image_file = os.path.join(tempfile.gettempdir(),
-                                           'studio_image_snapshot.%s' % self.format)
+            self.image_file = os.path.join(
+                tempfile.gettempdir(),
+                "studio_image_snapshot.%s" % self.format,
+            )
         elif path and name:
-            self.image_file = os.path.join(path, '%s.%s' % (name, format))
+            self.image_file = os.path.join(
+                path, "%s.%s" % (name, format)
+            )
         self.unknown_icon = os.path.join(
-            resources.getIconPath(), 'unknown.png')
+            resources.getIconPath(), "unknown.png"
+        )
 
     def create(self, width=2048, height=2048):
         m_image = self.vieportSnapShot()
-        output_path = self.writeImage(m_image, width=width, height=height)
+        output_path = self.writeImage(
+            m_image, width=width, height=height
+        )
         return m_image, output_path
 
     def vieportSnapShot(self):
         m3d_view = OpenMayaUI.M3dView.active3dView()
         if not m3d_view.isVisible():
-            OpenMaya.MGlobal.displayWarning('Active 3d View not visible!...')
+            OpenMaya.MGlobal.displayWarning(
+                "Active 3d View not visible!..."
+            )
             return
         m3d_view.refresh(True, True, True)
         m_image = OpenMaya.MImage()
@@ -56,7 +64,9 @@ class ImageCalibration(object):
         if not m_image:
             m_image = OpenMaya.MImage()
             m_image.readFromFile(self.unknown_icon)
-        m_image.writeToFileWithDepth(self.image_file, self.format, False)
+        m_image.writeToFileWithDepth(
+            self.image_file, self.format, False
+        )
         self.keepAspectRatio(out_file=self.image_file)
         output_path = self.imageResize(output_path=self.image_file)
         return output_path
@@ -81,8 +91,11 @@ class ImageCalibration(object):
         if not output_path:
             output_path = self.image_file
         q_image = QtGui.QImage(self.image_file)
-        scaled = q_image.scaled(width, height, QtCore.Qt.KeepAspectRatio)
+        scaled = q_image.scaled(
+            width, height, QtCore.Qt.KeepAspectRatio
+        )
         scaled.save(output_path)
         return output_path
+
 
 # end ####################################################################

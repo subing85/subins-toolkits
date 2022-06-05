@@ -1,4 +1,4 @@
-'''
+"""
 console.py 0.0.1 
 Date: August 15, 2019
 Last modified: August 27, 2019
@@ -11,7 +11,7 @@ Author: Subin. Gopi(subing85@gmail.com)
 
 Description
     None.
-'''
+"""
 
 import sys
 import PySide.QtCore as QtCore

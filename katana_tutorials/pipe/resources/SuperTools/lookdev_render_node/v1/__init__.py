@@ -7,6 +7,5 @@ from Node import LookdevRenderNode
 
 def GetEditor():
     from Editor import LookdevRenderEditor
+
     return LookdevRenderEditor
-
-

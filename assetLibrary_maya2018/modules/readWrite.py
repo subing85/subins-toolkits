@@ -1,4 +1,4 @@
-'''
+"""
 readWrite.py 0.0.1 
 Date: January 01, 2019
 Last modified: February 24, 2019
@@ -12,7 +12,7 @@ Author: Subin. Gopi(subing85@gmail.com)
 Description
     readWrite is the function set for custom data structure. 
     The purpose of the readWrite to create, getting and setting the model data.  
-'''
+"""
 
 
 import os
@@ -26,52 +26,57 @@ from datetime import datetime
 
 
 class ReadWrite(object):
-
     def __init__(self, **kwargs):
-        comment = 'subin gopi tool kits'
-        created_date = datetime.now().strftime('%Y/%d/%B - %I:%M:%S:%p')
-        description = 'This data contain information about subin gopi tool kits'
-        self.type = 'generic'
+        comment = "subin gopi tool kits"
+        created_date = datetime.now().strftime(
+            "%Y/%d/%B - %I:%M:%S:%p"
+        )
+        description = (
+            "This data contain information about subin gopi tool kits"
+        )
+        self.type = "generic"
         valid = True
         data = None
         self.tag = None
         self.path = tempfile.gettempdir()
-        self.format = 'json'
+        self.format = "json"
         self.name = None
-        if 'path' in kwargs:
-            self.path = kwargs['path']
-        if 'format' in kwargs:
-            self.format = kwargs['format']
-        if 'name' in kwargs:
-            self.name = kwargs['name']
-        if 'c' in kwargs:
-            comment = kwargs['c']
-        if 'cd' in kwargs:
-            created_date = kwargs['cd']
-        if 'd' in kwargs:
-            description = kwargs['d']
-        if 't' in kwargs:
-            self.type = kwargs['t']
-        if 'v' in kwargs:
-            valid = kwargs['v']
-        if 'data' in kwargs:
-            data = kwargs['data']
-        if 'tag' in kwargs:
-            self.tag = kwargs['tag']
-        self.datas = {'comment': comment,
-                      'created_date': created_date,
-                      'author': 'Subin Gopi',
-                      '#copyright': '(c) 2019, Subin Gopi All rights reserved.',
-                      'warning': '# WARNING! All changes made in this file will be lost!',
-                      'description': description,
-                      'type': self.type,
-                      'tag': self.tag,
-                      'valid': valid,
-                      'user': getpass.getuser(),
-                      'data': data
-                      }
+        if "path" in kwargs:
+            self.path = kwargs["path"]
+        if "format" in kwargs:
+            self.format = kwargs["format"]
+        if "name" in kwargs:
+            self.name = kwargs["name"]
+        if "c" in kwargs:
+            comment = kwargs["c"]
+        if "cd" in kwargs:
+            created_date = kwargs["cd"]
+        if "d" in kwargs:
+            description = kwargs["d"]
+        if "t" in kwargs:
+            self.type = kwargs["t"]
+        if "v" in kwargs:
+            valid = kwargs["v"]
+        if "data" in kwargs:
+            data = kwargs["data"]
+        if "tag" in kwargs:
+            self.tag = kwargs["tag"]
+        self.datas = {
+            "comment": comment,
+            "created_date": created_date,
+            "author": "Subin Gopi",
+            "#copyright": "(c) 2019, Subin Gopi All rights reserved.",
+            "warning": "# WARNING! All changes made in this file will be lost!",
+            "description": description,
+            "type": self.type,
+            "tag": self.tag,
+            "valid": valid,
+            "user": getpass.getuser(),
+            "data": data,
+        }
         self.file_path = os.path.join(
-            self.path, '%s.%s' % (self.name, self.format))
+            self.path, "%s.%s" % (self.name, self.format)
+        )
 
     def has_file(self):
         if os.path.isfile(self.file_path):
@@ -85,9 +90,9 @@ class ReadWrite(object):
         for each_key in self.datas:
             if each_key not in data:
                 return False
-        if not data['valid']:
+        if not data["valid"]:
             return False
-        if data['type'] != self.type:
+        if data["type"] != self.type:
             return False
         return True
 
@@ -104,53 +109,61 @@ class ReadWrite(object):
         if not data:
             return None
         if not self.tag:
-            return data['data']
-        if data['tag'] != self.tag:
+            return data["data"]
+        if data["tag"] != self.tag:
             return None
-        return data['data']
+        return data["data"]
 
     def get_info(self):
         data = self.get_all()
         info_data = {}
         for k, v in data.items():
-            if k == 'data':
+            if k == "data":
                 continue
             info_data.setdefault(k, v)
         return info_data
 
     def get_all(self):
         if not os.path.isfile(self.file_path):
-            warnings.warn('Not fount  file %s' % self.file_path, Warning)
+            warnings.warn(
+                "Not fount  file %s" % self.file_path, Warning
+            )
             return
         try:
             data = read(self.file_path)
         except Exception as error:
             warnings.warn(error, Warning)
             data = None
-        if 'data' not in data:
+        if "data" not in data:
             return None
         return data
 
     def get_inputs(self):
         path_data = self.get_data()
-        maya_path = path_data['0']['path']
-        library_path = path_data['1']['path']
-        create_type = path_data['2']['value']
-        maya_type = path_data['3']['value']         
-        output_path = path_data['4']['path']
-        return maya_path, library_path, create_type, maya_type, output_path
+        maya_path = path_data["0"]["path"]
+        library_path = path_data["1"]["path"]
+        create_type = path_data["2"]["value"]
+        maya_type = path_data["3"]["value"]
+        output_path = path_data["4"]["path"]
+        return (
+            maya_path,
+            library_path,
+            create_type,
+            maya_type,
+            output_path,
+        )
 
     def get_library_path(self):
         path_data = self.get_data()
-        return path_data['1']['path']
+        return path_data["1"]["path"]
 
     def get_maya_path(self):
         path_data = self.get_data()
-        return path_data['0']['path']
+        return path_data["0"]["path"]
 
     def get_create_type(self):
         path_data = self.get_data()
-        return path_data['0']['value']
+        return path_data["0"]["value"]
 
     def getBundles(self):
         if not os.path.isdir(self.path):
@@ -165,24 +178,24 @@ class ReadWrite(object):
             file_data = read(os.path.join(self.path, each_file))
             if not file_data:
                 continue
-            if 'valid' not in file_data:
+            if "valid" not in file_data:
                 continue
-            if not file_data['valid']:
+            if not file_data["valid"]:
                 continue
-            if 'type' not in file_data:
+            if "type" not in file_data:
                 continue
-            if 'tag' not in file_data:
+            if "tag" not in file_data:
                 continue
             bundle = os.path.splitext(os.path.basename(each_file))[0]
             data = {}
-            data['tag'] = file_data['tag'].encode()
-            data['path'] = os.path.join(self.path, each_file)
-            data['data'] = file_data['data']
+            data["tag"] = file_data["tag"].encode()
+            data["path"] = os.path.join(self.path, each_file)
+            data["data"] = file_data["data"]
             bundles.setdefault(bundle, data)
         return bundles
 
     def set_order(self, data):
-        '''
+        """
         sort_data = {}
         for each, dict_data in data.items():
             if 'order' not in dict_data:
@@ -191,15 +204,18 @@ class ReadWrite(object):
 
         result = sum(sort_data.values(), [])
         return result
-        '''
+        """
         result = []
         index = 0
         while index < len(data) + 1:
             x = 0
-            for k, v, in data.items():
+            for (
+                k,
+                v,
+            ) in data.items():
                 if x > len(data):
                     break
-                order = v['order']
+                order = v["order"]
                 if order != index:
                     continue
                 result.append(k)
@@ -217,29 +233,30 @@ def write(path, data):
             os.remove(file)
         except Exception as result:
             print(result)
-    result = {True: 'successfully created Database {}'.format(path)}
+    result = {True: "successfully created Database {}".format(path)}
     genericData = data.copy()
     currentTime = time.time()
     try:
         data = json.dumps(genericData, indent=4)
-        jsonData = open(path, 'w')
+        jsonData = open(path, "w")
         jsonData.write(data)
         jsonData.close()
         os.utime(path, (currentTime, currentTime))
     except Exception as except_result:
         result = {False: str(except_result)}
-    print('\n#write result\t- ', result)
+    print("\n#write result\t- ", result)
     return result
 
 
 def read(path):
     data = {}
-    openData = open(path, 'r')
+    openData = open(path, "r")
     try:
         data = json.load(openData)
     except Exception as result:
         warnings.warn(str(result))
     openData.close()
     return data
+
 
 # end ####################################################################

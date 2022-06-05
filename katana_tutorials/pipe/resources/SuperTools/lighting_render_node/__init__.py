@@ -5,13 +5,13 @@
 
 import v1
 
-NODE_TYPE = 'studio_lighting_render'
+NODE_TYPE = "studio_lighting_render"
 
 arguments = (
-    'SuperTool',
+    "SuperTool",
     2,
     NODE_TYPE,  # type of the node
-    (v1.LightingRenderNode, v1.GetEditor)
-    )
+    (v1.LightingRenderNode, v1.GetEditor),
+)
 
 PluginRegistry = [arguments]

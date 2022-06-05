@@ -5,8 +5,7 @@ from PyQt4 import QtGui
 
 
 class TemplateEditor(QtGui.QWidget):
-    
     def __init__(self, parent, node):
         QtGui.QWidget.__init__(self, parent)
-        
-        print 'node', node
+
+        print "node", node

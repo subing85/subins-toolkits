@@ -1,4 +1,4 @@
-'''
+"""
 config.py 0.0.1 
 Date: January 15, 2019
 Last modified: January 26, 2019
@@ -11,12 +11,12 @@ Author: Subin. Gopi(subing85@gmail.com)
 
 Description
     None.
-'''
+"""
 
 
 def get_conig():
-    return 'Linux', 'maya', '2016', '2.7.6'
+    return "Linux", "maya", "2016", "2.7.6"
 
 
 def get_tool_kit():
-    return 'smart_deformer', 'Smart Deformer', '0.0.1'
+    return "smart_deformer", "Smart Deformer", "0.0.1"

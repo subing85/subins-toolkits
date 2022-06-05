@@ -1,4 +1,4 @@
-'''
+"""
 find_shader_data.py 0.0.1 
 Date: August 05, 2019
 Last modified: August 05, 2019
@@ -11,7 +11,7 @@ Author: Subin. Gopi(subing85@gmail.com)
 
 Description
     to find the shader details from the scenes.
-'''
+"""
 
 
 import os
@@ -24,21 +24,21 @@ from pymel import core
 
 def unknown_types():
     node_types = [
-        'lightLinker',
-        'materialInfo',
-        'nodeGraphEditorInfo',
-        'partition',
-        'groupId',
-        'hyperShadePrimaryNodeEditorSavedTabsInfo',
-        'renderPartition',
-        'timeToUnitConversion'
+        "lightLinker",
+        "materialInfo",
+        "nodeGraphEditorInfo",
+        "partition",
+        "groupId",
+        "hyperShadePrimaryNodeEditorSavedTabsInfo",
+        "renderPartition",
+        "timeToUnitConversion",
     ]
     return node_types
 
 
 def get_shader_nodes():
-    default_shader = ['lambert1', 'particleCloud1']
-    default_shader_list = core.ls(type='defaultShaderList')
+    default_shader = ["lambert1", "particleCloud1"]
+    default_shader_list = core.ls(type="defaultShaderList")
     shaders = []
     for each in default_shader_list:
         nodes = core.listConnections(each, s=True, d=False)
@@ -73,28 +73,31 @@ def get_data():
     for x, shader in enumerate(shaders):
         dependency_nodes = get_networks(shader)
         colour = None
-        if core.objExists('%s.color' % shader.name()):
-            color_attr = shader.attr('color')
+        if core.objExists("%s.color" % shader.name()):
+            color_attr = shader.attr("color")
             colour = color_attr.get()
             if color_attr.listConnections(s=True, d=False):
-                colour = 'already connected'
+                colour = "already connected"
         shader_data = {
-            'shader_name': shader.name().encode(),
-            'node_type': shader.type().encode(),
-            'color_value': colour,
-            'dependency_nodes': {}
+            "shader_name": shader.name().encode(),
+            "node_type": shader.type().encode(),
+            "color_value": colour,
+            "dependency_nodes": {},
         }
         dependency_data = {}
         for index, node in enumerate(dependency_nodes):
             dependency_data = {
-                'node_name': node.name().encode(),
-                'node_type': node.type().encode()
+                "node_name": node.name().encode(),
+                "node_type": node.type().encode(),
             }
-            if node.type() == 'file':
-                source_image = node.getAttr('fileTextureName')
-                dependency_data.update({'source_image': source_image.encode()})
-            shader_data['dependency_nodes'].setdefault(
-                index + 1, dependency_data)
+            if node.type() == "file":
+                source_image = node.getAttr("fileTextureName")
+                dependency_data.update(
+                    {"source_image": source_image.encode()}
+                )
+            shader_data["dependency_nodes"].setdefault(
+                index + 1, dependency_data
+            )
         data.setdefault(x + 1, shader_data)
     return data
 
@@ -102,7 +105,8 @@ def get_data():
 def validateo(output_path=None, write=False):
     if not output_path:
         output_path = os.path.join(
-            tempfile.gettempdir(), 'studio_maya_shader_data.txt')
+            tempfile.gettempdir(), "studio_maya_shader_data.txt"
+        )
     if os.path.isfile(output_path):
         try:
             os.chmod(output_path, 0777)
@@ -114,13 +118,13 @@ def validateo(output_path=None, write=False):
             print str(error)
     data = get_data()
     if write:
-        with (open(output_path, 'w')) as content:
+        with (open(output_path, "w")) as content:
             content.write(json.dumps(data, indent=4))
     return data, output_path
 
 
 data, path = validateo(write=True)
-print "\nhttp://www.subins-toolkits.com", '\n', '-'*41
+print "\nhttp://www.subins-toolkits.com", "\n", "-" * 41
 print json.dumps(data, indent=4)
 try:
     webbrowser.open(path)

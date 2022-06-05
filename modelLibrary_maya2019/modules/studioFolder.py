@@ -1,4 +1,4 @@
-'''
+"""
 studioFolders.py 0.0.1 
 Date: January 16, 2019
 Last modified: January 26, 2019
@@ -11,7 +11,7 @@ Author: Subin. Gopi(subing85@gmail.com)
 
 Description
     None.
-'''
+"""
 
 import os
 import shutil
@@ -24,9 +24,10 @@ from modelLibrary_maya2019 import resources
 
 
 class Folder(object):
-
     def __init__(self):
-        self.folder_icon = os.path.join(resources.getIconPath(), 'folder.png')
+        self.folder_icon = os.path.join(
+            resources.getIconPath(), "folder.png"
+        )
 
     def load_folder_structure(self, path, treewidget):
         treewidget.clear()
@@ -36,7 +37,7 @@ class Folder(object):
     def get_folder_structure(self, path):
         directory_list = {}
         for root, dirs, files in os.walk(path):
-            replace = root.replace(path, '')
+            replace = root.replace(path, "")
             folderList = replace.split(os.sep)
             folders = directory_list
             for eachFolder in folderList:
@@ -52,49 +53,54 @@ class Folder(object):
                 item.setText(0, each_path)
                 item.setToolTip(0, current_path)
                 icon = QtGui.QIcon()
-                icon.addPixmap(QtGui.QPixmap(self.folder_icon),
-                               QtGui.QIcon.Normal, QtGui.QIcon.Off)
+                icon.addPixmap(
+                    QtGui.QPixmap(self.folder_icon),
+                    QtGui.QIcon.Normal,
+                    QtGui.QIcon.Off,
+                )
                 item.setIcon(0, icon)
             self.set_folder_structure(
-                current_path, data[each_path], parent=item)
+                current_path, data[each_path], parent=item
+            )
 
     def create(self, folder_path=None, force=False):
         result = True, folder_path
         if os.path.isdir(folder_path):
-            return False, 'Already found the folder %s ' % folder_path
+            return False, "Already found the folder %s " % folder_path
         try:
-            print 'create', folder_path
+            print "create", folder_path
             os.makedirs(folder_path)
         except Exception as error:
-            warnings.warn('\n#%s' % error)
+            warnings.warn("\n#%s" % error)
             result = False, str(error)
         return result
 
     def rename(self, folder_path=None, name=None, force=False):
         if not os.path.exists(folder_path):
-            return False,  'Can not found directory'
+            return False, "Can not found directory"
 
         new_path = os.path.join(os.path.dirname(folder_path), name)
-        print 'new_path', new_path
+        print "new_path", new_path
         result = True, new_path
         try:
             os.chmod(folder_path, 0777)
             os.rename(folder_path, new_path)
         except Exception as error:
-            warnings.warn('\n#%s' % error)
+            warnings.warn("\n#%s" % error)
             result = False, str(error)
         return result
 
     def remove(self, folder_path=None, force=False):
         if not os.path.isdir(folder_path):
-            return False, 'Can not found directory'
+            return False, "Can not found directory"
         result = True, folder_path
         try:
             os.chmod(folder_path, 0777)
             shutil.rmtree(folder_path)
         except Exception as error:
-            warnings.warn('\n#%s' % error)
+            warnings.warn("\n#%s" % error)
             result = False, str(error)
         return result
+
 
 # end ####################################################################

@@ -21,4 +21,5 @@ description: bypass (disable) the katana node
 #              is passed as True, the panel will be raised to the front.
 
 from core import nodegraph
+
 nodegraph.set_knode_disable()

@@ -1,4 +1,4 @@
-'''
+"""
 config.py 0.0.1 
 Date: January 15, 2019
 Last modified: January 26, 2019
@@ -11,12 +11,12 @@ Author: Subin. Gopi(subing85@gmail.com)
 
 Description
     None.
-'''
+"""
 
 
 def get_conig():
-    return 'Linux', 'maya', '2019', '2.7.11'
+    return "Linux", "maya", "2019", "2.7.11"
 
 
 def get_tool_kit():
-    return 'asset_library', 'Asset Library', '0.0.1'
+    return "asset_library", "Asset Library", "0.0.1"

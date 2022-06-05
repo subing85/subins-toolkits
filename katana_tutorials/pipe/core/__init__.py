@@ -1,1 +1,1 @@
-print 'welcome to katana python tutorial'
+print "welcome to katana python tutorial"

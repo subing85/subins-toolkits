@@ -1,2 +1,2 @@
-# Upgrade.py - stub for upgrading the node. 
+# Upgrade.py - stub for upgrading the node.
 # This allows compatibility with older versions of the node.

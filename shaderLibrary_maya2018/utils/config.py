@@ -1,4 +1,4 @@
-'''
+"""
 config.py 0.0.1 
 Date: January 15, 2019
 Last modified: June 13, 2019
@@ -11,12 +11,16 @@ Author: Subin. Gopi(subing85@gmail.com)
 
 Description
     None.
-'''
+"""
 
 
 def get_conig():
-    return 'Linux', 'maya', '2018', '2.7.11'
+    return "Linux", "maya", "2018", "2.7.11"
 
 
 def get_tool_kit():
-    return 'shader_library_maya2018', 'Shader Library Maya-2018', '0.0.1'
+    return (
+        "shader_library_maya2018",
+        "Shader Library Maya-2018",
+        "0.0.1",
+    )

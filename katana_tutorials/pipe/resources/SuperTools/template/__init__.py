@@ -5,13 +5,13 @@
 
 import v1
 
-NODE_TYPE = 'studio_template'
+NODE_TYPE = "studio_template"
 
 arguments = (
-    'SuperTool',
+    "SuperTool",
     2,
     NODE_TYPE,  # type of the node
-    (v1.TemplateNode, v1.GetEditor)
-    )
+    (v1.TemplateNode, v1.GetEditor),
+)
 
 PluginRegistry = [arguments]

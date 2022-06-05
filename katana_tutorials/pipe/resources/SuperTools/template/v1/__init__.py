@@ -7,5 +7,5 @@ from Node import TemplateNode
 
 def GetEditor():
     from Editor import TemplateEditor
-    return TemplateEditor
 
+    return TemplateEditor
