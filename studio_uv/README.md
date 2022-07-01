@@ -3,10 +3,10 @@ https://www.subins-toolkits.com
 Maya plug-in for Export and Import UV Sets
 
 
-Free Maya Plug-in for any kind use such as students, commercial purposes, independent film makers, etc.
-Supprt to Maya 2016, Maya 2017, Maya 2018, Maya 2019
+Free Maya Plug-in for any kind of use such as students, commercial purposes, independent filmmakers, etc.
+Support to Maya 2016, Maya 2017, Maya 2018, Maya 2019
 
-Create Date:   1 Augustr 2019
+Create Date:   1 August 2019
 
 Author: Subin. Gopi
 mail id: subing85@gmail.com
@@ -19,13 +19,13 @@ Copyright 2019, Subin Gopi All rights reserved. https://www.subins-toolkits.com/
 
 Description
 
-    This plugin demonstrates how to Export and Import UV Sets. And the exported data contain only uv set information, (no geometries) so that data contain very less size compare to any maya build-in data format.  
+    This plugin demonstrates how to Export and Import UV Sets. And the exported data contain only uv set information, (no geometries) so that data contains a very less size compared to any maya build-in data format.  
 
-    In pipeline environment, better way to manage the export and import the uv's for example in the case of uv publish, most of the production practices geometry to publish, instead of any uv data, because Maya not provide any build-in pulgin to export and import uv's. 
+    In the pipeline environment, better way to manage the export and import of the uv's for example in the case of uv publish, most of the production practices geometry to publish, instead of any uv data, because Maya does not provide any built-in plugin to export and import uv's. 
 
-    Free Maya Plug-in for any kind use.
+    Free Maya Plug-in for any kind of use.
 
-    This is easy way to interchanging uv's between Maya instances.  
+    This is an easy way to interchanging uv's between Maya instances.  
     
     
 
@@ -61,12 +61,12 @@ How to Configure the Studio UV Plug-in?.​
     2. Copy the sg_studio_uv.py file and studio_uv folder.
     
             a. _/_/_/studio_uv/plug-in/sg_studio_uv.py file copy.
-                to build-in "MAYA_PLUG_IN_PATH" env variable locations, for example find the  below directories.
+                to build in "MAYA_PLUG_IN_PATH" env variable locations, for example, find the below directories.
                         /home/user/maya/2016/plug-ins
                         /home/user/maya/plug-ins:
                         /usr/autodesk/maya2016/bin/plug-ins    
                             
-                to find the build-in MAYA_PLUG_IN_PATH locations use below python code
+                to find the build-in MAYA_PLUG_IN_PATH locations use the below python code
                 run in the maya python interpreter.
                        import os
                        print os.environ['MAYA_PLUG_IN_PATH']
@@ -80,7 +80,7 @@ How to Configure the Studio UV Plug-in?.​
                     
 How to use the studioUV plug-in?. 
 
-    plugin name : studioUV
+    plugin name: studioUV
 
         mel command
             studioUV
@@ -98,22 +98,22 @@ Help on function studioUV in module pymel.internal.pmcmds:
 studioUV(*args, **kwargs)
 
     Flags:
-        - directory : dir                (unicode or str)       create, edit and query
+        - directory: dir                (Unicode or str)       create, edit and query
                Set the type of the export output or import inputs directory.​
 
-        - objects : obj                  (unicode or str)       create and edit
+        - objects: obj                  (Unicode or str)       create and edit
               Set the type of the export or import inputs polygon as s sting format.
         
         - repeat : rp                    (bool)          edit
-              Set the uv import type to multiple assign the uv sets.
+              Set the uv import type to multiple assigns the uv sets.
               Able to assign the uv sets to duplicated or repeated polygons.
              
-        - select : s                     (unicode or str)       create and edit
+        - select: s                     (Unicode or str)       create and edit
               Set the type of the export or import inputs polygon.
               export "selected" or "all" 
               import "selected" or "all" or "matching" ​
 
-        - type : typ                     (unicode or str)       create and edit
+        - type : typ                     (Unicode or str)       create and edit
               create and edit              
             Set the type of process called "export" or "import"     
     
