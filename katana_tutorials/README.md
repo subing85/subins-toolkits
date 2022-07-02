@@ -6,18 +6,18 @@ https://www.subins-toolkits.com/
 
 Introduction of katana
 
-    Katana is developed by foundry. Its highly efficient and most demanding look development and lighting tool. It arms artists with the creative freedom and scalability to exceed the needs
+    Katana is developed by the foundry. Its a highly efficient and most demanding look development and lighting tool. It arms artists with the creative freedom and scalability to exceed the needs
     ttps://www.foundry.com/products/katana
 
 
 A free tutorials source code version 0.0.1
 
-    This tutorial include only basic aspect of katana, python and little bit of katana interface as well, so this is especially for beginners not covering any advanced level. 
-    I hope for beginners it should helpful. Little knowledge of python, is better to understand and katana knowledge is not necessary. because once you cover all the lesson, 
-    you will get more idea of katana. I believe once cover all the lesson, you can catch up the katana.
+    This tutorial includes only basic aspects of katana, python, and a little bit of katana interface as well, so this is especially for beginners not covering any advanced level. 
+    I hope for beginners it should help. Little knowledge of python, is better to understand and katana knowledge is not necessary. because once you cover all the lessons, 
+    you will get more idea of katana. I believe once cover all the lessons, you can catch up with the katana.
     
-    The multi-part video series covers most of the production requirements in lookdev and lighting. And the concept of the development is very simple manner, not much complexity.
-    This tutorials cover Super Tool Development and Shader USD  Development as well. This video series include 9 lesson with 46 videos, total 12:30 hour videos  
+    The multi-part video series covers most of the production requirements in lookdev and lighting. And the concept of development is a very simple manner, with not much complexity.
+    These tutorials cover Super Tool Development and Shader USD  Development as well. These video series include 9 lessons with 46 videos, total 12:30 hour videos  
 
     
 Special Thanks to 
@@ -205,7 +205,7 @@ Lesson 9 - Pixar-Universal Scene Description( USD)
 
 
     Support,
-    Comments, suggestions and bug reports are welcome.
+    Comments, suggestions, and bug reports are welcome.
     subing85@gmail.com
 
 
