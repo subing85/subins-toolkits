@@ -50,11 +50,14 @@ How to run?
     > Run the following code in the Python script editor.
     
 
-	import smartDeformer_maya2020
-	smartDeformer_maya2020.show_window()
+	import smartDeformer_maya2023
+	smartDeformer_maya2023.show_window()
 	
 	
 Bug fix
 
     > maya 2018
 	wire deformer convertion fix 	
+
+Maya-preferences-settings 
+![image](https://github.com/subing85/subins-toolkits/assets/36088306/b7ed3738-5fa2-4b7b-b097-5a1fa76b49a3)
