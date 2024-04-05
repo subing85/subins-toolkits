@@ -30,10 +30,6 @@ from smartDeformer_maya2023.modules import studioMaya
 from smartDeformer_maya2023.utils import generic
 from smartDeformer_maya2023.utils import read
 
-import importlib
-
-importlib.reload(studioMaya)
-
 
 class Geometry(QtWidgets.QWidget):
     def __init__(self, parent=None):
@@ -304,8 +300,6 @@ class Geometry(QtWidgets.QWidget):
             cluster_data = self.my_maya.getClusterHandle(deformers)
             for parent_node, v in joint_data.items():
                 for index in range(v.length()):
-                    print("\n", v[index].fullPathName())
-
                     if parent_node.name() in deformer_data:
                         if v[index].fullPathName() in deformer_data[parent_node.name()]:
                             continue

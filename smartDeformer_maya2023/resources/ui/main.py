@@ -32,10 +32,6 @@ from smartDeformer_maya2023.resources.ui import mirror
 from smartDeformer_maya2023.resources.ui import weights
 from smartDeformer_maya2023.utils import platforms
 
-import importlib
-
-importlib.reload(geometry)
-
 
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self, parent=platforms.get_qwidget()):
