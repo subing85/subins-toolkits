@@ -1,6 +1,6 @@
 https://www.subins-toolkits.com/
 
-Smart Deformer 0.0.1 Maya 2020
+Smart Deformer 0.0.1 Maya 2023
 
 A free tool to manage polygon geometries deformer weights in Autodesk Maya.
 
