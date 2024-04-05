@@ -50,8 +50,8 @@ How to run?
     > Run the following code in the Python script editor.
     
 
-	import smartDeformer_maya2020
-	smartDeformer_maya2020.show_window()
+	import smartDeformer_maya2023
+	smartDeformer_maya2023.show_window()
 	
 	
 Bug fix
