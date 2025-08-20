@@ -1,0 +1,53 @@
+# Copyright (c) 2025, Motion-Craft Technology All rights reserved.
+# Author: Subin. Gopi (subing85@gmail.com).
+# Description: Motion-Craft CACHE Tool, export alembic cache from maya scene source code.
+
+
+from __future__ import absolute_import
+
+def doIt(**kwargs):
+
+    import json
+    import pydoc
+    import logging
+    import importlib
+
+    logger = logging.getLogger("__name__")
+    logger.setLevel(logging.INFO)
+
+    item = "{{context["exportAction"]}}"
+    logger.info("class: %s" % item)
+
+    module = importlib.import_module(".".join(item.split(".")[0:-1]))
+    importlib.reload(module)
+
+    try:
+        pyclass = pydoc.locate(item)
+    except ImportError as error:
+        logger.error("ReadError: %s" % error)
+        return
+
+    pyclass.input = kwargs
+    pyclass.execute()
+    result = pyclass.output.get("result")
+
+    with open("{{context["jsonFilepath"]}}", "w") as target:
+        target.write(json.dumps(result, indent=4))
+
+
+if __name__ == "__main__":
+    input = {
+        "filepath": "{{ context["filepath"] }}",
+        "frameStart": {{ context["frameStart"] }},
+        "frameEnd": {{ context["frameEnd"] }},
+        "nodes": {{ context["nodes"] }},
+        "localPath": "{{ context["localPath"] }}",
+        "axis": "{{ context["axis"] }}",
+        "fps": "{{ context["fps"] }}",
+        "unit": "{{ context["unit"] }}",
+        "start": "{{ context["start"] }}",
+        "end": "{{ context["end"] }}",
+        "cameraFBX": {{ context["cameraFBX"] }},
+        "cache": {{ context["cache"] }},
+    }
+    doIt(**input)

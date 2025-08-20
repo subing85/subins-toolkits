@@ -1,0 +1,98 @@
+<EveResolve release="v1" version="0.0.1" author="subing85@gmail.com" description="Motion-Craft-Works Evi(ID - Card)  utils module." mcw="Copyright (c) 2025, Motion-Craft-Works Production All rights reserved.">
+	<eve type="template">
+		<collection name="input" type="dict">
+			<parameter name="resolution" default="300" type="int" />
+			<parameter name="background" default="test-0001-background.png" type="str" />
+			<parameter name="foreground" default="test-0001-foreground.png" type="str" />
+			<parameter name="width" default="2.05" type="float" />
+			<parameter name="height" default="3.303" type="float" />
+			<parameter name="name" default="CR79 ID Cards" type="str" />
+			<parameter name="x" default="174" type="int" />
+			<parameter name="y" default="261" type="int" />
+			<parameter name="scale" default="61" type="int" />
+			<parameter name="mask" default="191" type="int" />
+			<parameter name="shape" default="circle" type="str" />
+			<parameter name="stroke" default="13" type="int" />
+			<parameter name="color" default="#000000" type="str" />
+		</collection>
+		<collection name="barcode" type="dict">
+			<parameter name="checked" default="True" type="bool" />
+			<parameter name="text" default="subin" type="str" />
+			<parameter name="x" default="50" type="int" />
+			<parameter name="y" default="50" type="int" />
+			<parameter name="scale" default="82" type="int" />
+			<parameter name="format" default="PNG" type="str" />
+			<parameter name="fontSize" default="7" type="int" />
+			<parameter name="textDistance" default="3" type="int" />
+			<parameter name="quietZone" default="6.5" type="float" />
+			<parameter name="dpi" default="300" type="int" />
+			<parameter name="background" default="white" type="str" />
+			<parameter name="foreground" default="black" type="str" />
+		</collection>
+		<collection name="field" type="list">
+			<parameterGroup name="fieldProperties" index="0" type="list">
+				<parameter name="index" default="0" type="int" />
+				<parameter name="field" default="name" type="str" />
+				<parameter name="text" default="Subin Gopi" type="str" />
+				<parameter name="size" default="20" type="int" />
+				<parameter name="family" default="Arial" type="str" />
+				<parameter name="fillColor" default="#ffffff" type="str" />
+				<parameter name="x" default="184" type="int" />
+				<parameter name="y" default="757" type="int" />
+				<parameter name="stroke" default="0" type="int" />
+				<parameter name="strokeColor" default="#ffffff" type="str" />
+				<parameter name="spacing" default="0" type="int" />
+				<parameter name="bold" default="False" type="bool" />
+				<parameter name="italic" default="False" type="bool" />
+				<parameter name="underline" default="False" type="bool" />
+				<parameter name="overline" default="False" type="bool" />
+				<parameter name="strikeOut" default="False" type="bool" />
+				<parameter name="wordSpacing" default="0" type="int" />
+				<parameter name="stretch" default="0" type="int" />
+				<parameter name="capitalization" default="mixedCase" type="str" />
+			</parameterGroup>
+			<parameterGroup name="fieldProperties" index="1" type="list">
+				<parameter name="index" default="1" type="int" />
+				<parameter name="field" default="id" type="str" />
+				<parameter name="text" default="1A" type="str" />
+				<parameter name="size" default="20" type="int" />
+				<parameter name="family" default="Arial" type="str" />
+				<parameter name="fillColor" default="#ffffff" type="str" />
+				<parameter name="x" default="183" type="int" />
+				<parameter name="y" default="823" type="int" />
+				<parameter name="stroke" default="0" type="int" />
+				<parameter name="strokeColor" default="#ffffff" type="str" />
+				<parameter name="spacing" default="0" type="int" />
+				<parameter name="bold" default="False" type="bool" />
+				<parameter name="italic" default="False" type="bool" />
+				<parameter name="underline" default="False" type="bool" />
+				<parameter name="overline" default="False" type="bool" />
+				<parameter name="strikeOut" default="False" type="bool" />
+				<parameter name="wordSpacing" default="0" type="int" />
+				<parameter name="stretch" default="0" type="int" />
+				<parameter name="capitalization" default="mixedCase" type="str" />
+			</parameterGroup>
+			<parameterGroup name="fieldProperties" index="2" type="list">
+				<parameter name="index" default="2" type="int" />
+				<parameter name="field" default="school" type="str" />
+				<parameter name="text" default="School" type="str" />
+				<parameter name="size" default="20" type="int" />
+				<parameter name="family" default="Arial" type="str" />
+				<parameter name="fillColor" default="#ffffff" type="str" />
+				<parameter name="x" default="183" type="int" />
+				<parameter name="y" default="892" type="int" />
+				<parameter name="stroke" default="0" type="int" />
+				<parameter name="strokeColor" default="#ffffff" type="str" />
+				<parameter name="spacing" default="0" type="int" />
+				<parameter name="bold" default="False" type="bool" />
+				<parameter name="italic" default="False" type="bool" />
+				<parameter name="underline" default="False" type="bool" />
+				<parameter name="overline" default="False" type="bool" />
+				<parameter name="strikeOut" default="False" type="bool" />
+				<parameter name="wordSpacing" default="0" type="int" />
+				<parameter name="stretch" default="0" type="int" />
+				<parameter name="capitalization" default="mixedCase" type="str" />
+			</parameterGroup>
+		</collection>
+	</eve>
+</EveResolve>
